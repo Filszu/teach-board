@@ -1,9 +1,15 @@
 .nav{
     width: 100%;
-    background-color: darkcyan;
+    background-color: var(--elements-main-color);
     height: 70px;
     padding: 30px;
     display: flex;
     justify-content: space-around;
     align-items: center;
+}
+
+.menuLeft{
+    /* justify-self: flex-end;
+     */
+     margin-left: auto;
 }

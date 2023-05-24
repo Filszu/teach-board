@@ -3,3 +3,17 @@
     text-align: center;
 }
 
+.container{
+    width:100%;
+    min-height: 100vh;
+}
+
+.panelContainer{
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    margin: 2rem 8rem;
+}
+.infoBox{
+    grid-column: 1/4;
+}
+

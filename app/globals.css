@@ -38,6 +38,16 @@
   --callout-border-rgb: 172, 175, 176;
   --card-rgb: 180, 185, 188;
   --card-border-rgb: 131, 134, 135;
+
+  /*my custom*/
+  --elements-main-color: #E07800;
+  --elements-secondary-color: #FFAE52;
+  --color-darkBlue: #006894;
+  --color-lightBlue: #009DE0;
+  --color-bg:#944F00;
+
+  --borderRadius-normal: 20px;
+
 }
 
 @media (prefers-color-scheme: dark) {
@@ -84,6 +94,7 @@ body {
   max-width: 100vw;
   overflow-x: hidden;
 }
+
 
 body {
   color: rgb(var(--foreground-rgb));

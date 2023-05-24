@@ -14,7 +14,7 @@ type Props = {
 const UserIcon = (props: Props) => {
   return (
     <div className={styles.icon}>
-        <Avatar sx={{ width: 56, height: 56 ,bgcolor: deepOrange[500], }}
+        <Avatar sx={{ width: 56, height: 56 ,bgcolor: "var(--color-lightBlue)", }}
         
         >{props.userName[0]}</Avatar>
         {/* <Avatar alt="User Profile img" src="../public/imgs/avatars/1.png" /> */}

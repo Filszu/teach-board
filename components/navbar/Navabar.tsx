@@ -6,7 +6,12 @@ type Props = {}
 const Navabar = (props: Props) => {
   return (
     <nav className={styles["nav"]}>
-        <UserIcon userName='Filszu' />
+        <div>
+         <h2>Teacher Dashboard</h2>
+        </div>
+        <div className={styles.menuLeft}>
+          <UserIcon userName='Filszu' />
+        </div>
     </nav>
   )
 }
