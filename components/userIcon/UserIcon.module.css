@@ -2,4 +2,5 @@
     justify-self: flex-end;
 
     cursor: pointer;
+    position: relative;
 }
