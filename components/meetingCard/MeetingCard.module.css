@@ -1,0 +1,9 @@
+.meetingCard{
+    width: 100%;
+    background-color: var(--elements-secondary-color);
+    border-radius: var(--borderRadius-normal);
+    padding: var(--padding-m-elemnts);
+    /* color: var(--color-darkBlue); */
+    color : var(--color-black);
+    margin: 10px 0;
+}

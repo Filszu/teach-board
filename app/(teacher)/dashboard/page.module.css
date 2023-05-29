@@ -12,8 +12,14 @@
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     margin: 2rem 8rem;
+    /* grid space */
+    grid-gap: 1rem;
 }
 .infoBox{
     grid-column: 1/4;
+}
+
+.meetingReminderContainer{
+    grid-column: 4/12;
 }
 

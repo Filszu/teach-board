@@ -45,8 +45,16 @@
   --color-darkBlue: #006894;
   --color-lightBlue: #009DE0;
   --color-bg:#944F00;
+  --color-black: #151414;
 
   --borderRadius-normal: 20px;
+
+  --padding-s-elemnts: 10px;
+  --padding-m-elemnts: 20px;
+  --padding-l-elemnts: 30px;
+
+  
+
 
 }
 
