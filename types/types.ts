@@ -20,6 +20,8 @@ export interface MeetingTxtKeys extends Meeting{
     payment_status?: string;
 }
 
+export type MeetingCardType = "etitable" | "static";
+
 export type MeetingStatus = "scheduled" | "cancelled" | "completed" |null;
 
 
