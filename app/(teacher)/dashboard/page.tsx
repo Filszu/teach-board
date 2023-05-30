@@ -3,33 +3,36 @@ import styles from './page.module.css'
 
 import Image from 'next/image'
 import { Meeting } from '@/types/types';
+import { Suspense } from 'react';
+import LatestMeetings from './LatestMeetings';
+
 
 
 type Props = {}
 
-async function getLatestMeetings() {
-  const res = await fetch('http://localhost:3000/api/meetings?meetingStatus=3&showKeysNames=true&orderBy=dateTime',{ 
-  next: { 
-    revalidate: 10
-    },
-    // cache: 'no-store'
-  });
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
+// async function getLatestMeetings() {
+//   const res = await fetch('http://localhost:3000/api/meetings?meetingStatus=3&showKeysNames=true&orderBy=dateTime',{ 
+//   // next: { revalidate: 10},
+//     cache: 'no-store'
+//   });
+//   // The return value is *not* serialized
+//   // You can return Date, Map, Set, etc.
  
-  // Recommendation: handle errors
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch data');
-  }
+//   // Recommendation: handle errors
+//   if (!res.ok) {
+//     // This will activate the closest `error.js` Error Boundary
+//     throw new Error('Failed to fetch data');
+//   }
+
+//   const meetings:Meeting[] = await res.json();
  
-  return res.json();
-}
+//   return meetings;
+// }
  
 
 const Page = async(props: Props) => {
-  const latestMeetings:Meeting[] = await getLatestMeetings();
-  console.log('latestMeetings',latestMeetings);
+  // const latestMeetings:Meeting[] = await getLatestMeetings();
+  // console.log('latestMeetings',latestMeetings);
 
   return (
         <>
@@ -40,10 +43,12 @@ const Page = async(props: Props) => {
           <section 
             className={styles.meetingReminderContainer}
           >
-            {latestMeetings&&latestMeetings.map((meeting:Meeting, index:number)=>{
-              return <MeetingCard key={meeting.id} cardDetails={meeting} cardIndex={index+1} />
-            })}
+            <Suspense fallback={<p>Loading🕛</p>}>
+              <LatestMeetings 
+              // getLatestMeetings={getLatestMeetings} 
+              />
              {/* <MeetingCard /> */}
+            </Suspense>
           </section>
         </>  
      
