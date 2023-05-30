@@ -8,7 +8,7 @@ import { Meeting } from '@/types/types';
 type Props = {}
 
 async function getLatestMeetings() {
-  const res = await fetch('http://localhost:3000/api/meetings?meetingStatus=3',{ next: { revalidate: 10 } });
+  const res = await fetch('http://localhost:3000/api/meetings?meetingStatus=3&showKeysNames=true',{ next: { revalidate: 10 } });
   // The return value is *not* serialized
   // You can return Date, Map, Set, etc.
  
@@ -36,7 +36,7 @@ const Page = async(props: Props) => {
             className={styles.meetingReminderContainer}
           >
             {latestMeetings&&latestMeetings.map((meeting:Meeting)=>{
-              return <MeetingCard key={meeting.id} cardDetails={meeting}/>
+              return <MeetingCard key={meeting.id} cardDetails={meeting} />
             })}
              {/* <MeetingCard /> */}
           </section>

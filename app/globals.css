@@ -42,16 +42,26 @@
   /*my custom*/
   --elements-main-color: #E07800;
   --elements-secondary-color: #FFAE52;
+  --elements-tertiary-color: #FFDAAE;
   --color-darkBlue: #006894;
   --color-lightBlue: #009DE0;
   --color-bg:#944F00;
   --color-black: #151414;
+
+  --color-paid: #00A300;
+  --color-unpaid: #FF0000;
+
+  --color-shedueled: #ff8800;
+  --color-cancelled: #FF0000;
+  --color-completed: #00A300;
 
   --borderRadius-normal: 20px;
 
   --padding-s-elemnts: 10px;
   --padding-m-elemnts: 20px;
   --padding-l-elemnts: 30px;
+
+
 
   
 
