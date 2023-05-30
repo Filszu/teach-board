@@ -1,5 +1,6 @@
 import { NextRequest } from "next/server"
 import { db_pool } from "@/utils/dbConnection"
+import { fakeDelay } from "@/utils/fakeDelay"
 
 
 export async function GET(req:NextRequest){
@@ -9,6 +10,8 @@ export async function GET(req:NextRequest){
     const {searchParams} = new URL(req.nextUrl)
     const meetingStatusParam = searchParams.get('meetingStatus')
     const showKeysNames:boolean = (searchParams.get('showKeysNames')?.toLowerCase?.() === 'true');
+    const orderBy:string = searchParams.get('orderBy') || 'id';
+    const arrange:string = searchParams.get('arrange') || 'DESC';
 
 
     let meetingStatus=0;
@@ -20,13 +23,17 @@ export async function GET(req:NextRequest){
     }
 
 
-
+    
 
 
     try {
+        
+    
 
     const connection = await db_pool.promise().getConnection();
 
+    await fakeDelay(500);
+    
 
     let sqlQuery =  `Select * from lessons WHERE 1=1${meetingStatus!==0?" AND statusID="+meetingStatus:""}`;
     if(showKeysNames){
@@ -38,6 +45,7 @@ export async function GET(req:NextRequest){
         JOIN lessons_statuses AS ls ON l.statusID = ls.id
         JOIN payment_statuses AS ps ON l.paymentStatusID = ps.id
         WHERE 1=1 ${meetingStatus!==0?" AND statusID="+meetingStatus:""}
+        ORDER BY l.${orderBy} ${arrange}
         ;
         `;
     }
@@ -67,3 +75,4 @@ export async function GET(req:NextRequest){
 
     
 }
+

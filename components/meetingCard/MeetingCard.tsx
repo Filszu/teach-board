@@ -17,6 +17,7 @@ import Slide from '@mui/material/Slide';
 
 import styles from './MeetingCard.module.css'
 import { useState } from "react";
+import Link from "next/link";
 interface Props {
     cardType?: MeetingCardType,
     cardDetails: Meeting,
@@ -43,9 +44,10 @@ const MeetingCard = (props: Props) => {
     
     console.log('meeting',meeting);
     const [showDetails, setShowDetails] = useState(false)
+    console.log('cardIndex',props.cardIndex??"no index")
   return (
     <>
-     <Slide direction="up" in={true} timeout={meeting.id*150}>
+     <Slide direction="up" in={true} timeout={(props.cardIndex??1)*150}>
           
       
         <div className={styles.meetingCard}>
@@ -53,9 +55,9 @@ const MeetingCard = (props: Props) => {
             <section className={styles.meetingCard__desc}>
 
               <div className={styles.meetingCard__desc__header}>
-                <h2>New meeting with <u><b>{meeting.student_name??"unknow Name"}</b></u></h2>
+                <h2>New meeting with <u><b>{meeting.student_name??"unknow Name"} {meeting.student_surname??""}</b></u></h2>
                 <section className={styles.meetingCard__actionButtons}>
-                  <Button variant="text" startIcon={<EditIcon/>} color="inherit">edit</Button>
+                  <Link href={`./meetings/${meeting.id}/edit`}><Button variant="text" startIcon={<EditIcon/>} color="inherit">edit</Button></Link>
                   <Button variant="text" startIcon={<ExpandMoreIcon/>} color="inherit" onClick={()=>setShowDetails(!showDetails)}>more</Button>
                 </section>
               </div>
