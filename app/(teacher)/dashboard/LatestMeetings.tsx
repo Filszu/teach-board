@@ -1,6 +1,9 @@
+'use client'
+// to avoid hydration error
 import { MeetingCard } from '@/components';
 import { Meeting } from '@/types/types';
-import React from 'react'
+import { useEffect, useState } from 'react';
+
 
 type Props = {
     // getLatestMeetings: () => Promise<Meeting[]>
@@ -25,10 +28,25 @@ async function getLatestMeetings() {
     return meetings;
   }
 
-const LatestMeetings = async(props: Props) => {
+const LatestMeetings = () => {
     // destructure props
     // const { getLatestMeetings } = props;
-    const latestMeetings:Meeting[] = await getLatestMeetings();
+    // const latestMeetings:Meeting[] = await getLatestMeetings();
+
+    const [latestMeetings, setLatestMeetings] = useState<Meeting[]>([]);
+    useEffect(() => {
+      async function fetchData() {
+        try {
+          const meetings: Meeting[] = await getLatestMeetings();
+          setLatestMeetings(meetings);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+  
+      fetchData();
+    }, []);
+    
     console.log('latestMeetings',latestMeetings);
   return (
     <>

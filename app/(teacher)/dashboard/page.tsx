@@ -1,4 +1,4 @@
-import { InfoCard, MeetingCard} from '@/components'
+import { InfoCard, LoadingBox, MeetingCard} from '@/components'
 import styles from './page.module.css'
 
 import Image from 'next/image'
@@ -43,7 +43,8 @@ const Page = async(props: Props) => {
           <section 
             className={styles.meetingReminderContainer}
           >
-            <Suspense fallback={<p>Loading🕛</p>}>
+            {/* <Suspense fallback={<p>Loading🕛</p>}> */}
+            <Suspense fallback={<LoadingBox/>}>
               <LatestMeetings 
               // getLatestMeetings={getLatestMeetings} 
               />

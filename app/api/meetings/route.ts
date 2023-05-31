@@ -32,7 +32,7 @@ export async function GET(req:NextRequest){
 
     const connection = await db_pool.promise().getConnection();
 
-    await fakeDelay(500);
+    await fakeDelay(3000);
     
 
     let sqlQuery =  `Select * from lessons WHERE 1=1${meetingStatus!==0?" AND statusID="+meetingStatus:""}`;
