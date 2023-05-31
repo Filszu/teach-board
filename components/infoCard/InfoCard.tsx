@@ -1,30 +1,36 @@
-'use client'
-import * as React from 'react';
-
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-
-
+import styles from './InfoCard.module.css';
 export default function InfoCard() {
+  
+  // get current date day
+  const date = new Date();
+  const day = date.getDay();
+  const dayList = ["Sunday","Monday","Tuesday","Wednesday ","Thursday","Friday","Saturday"];
+  const dayOfWeek = dayList[day];
+  // get current date month
+  const month = date.getMonth();
+  const monthList = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  const currentMonth = monthList[month];
+
   return (
-    <Card sx={{ minWidth: "100%",borderRadius: 'var(--borderRadius-normal)', backgroundColor:'var(--color-lightBlue)'}}>
-      <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          1
-        </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          2
-        </Typography>
-        <Typography variant="body2">
-          3
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">4</Button>
-      </CardActions>
-    </Card>
+    <section className={styles.infoCard}>
+      <div className={styles.infoCard__month}>
+        <p>{currentMonth}</p>
+      </div>
+      <div className={styles.infoCard__day}>
+        <p>{day}</p>
+      </div>
+      <div className={styles.infoCard__dayOfWeek}>
+        <p>{dayOfWeek}</p>
+      </div>
+      <div className={styles.infoCard__meetings}>
+        <p>⏰<br/>Meetings Today: </p>
+        <p className={styles.infoCard__meetings__count}>
+          5
+        </p>
+      </div>
+
+
+
+    </section>
   );
 }

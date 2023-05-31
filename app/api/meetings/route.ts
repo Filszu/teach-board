@@ -4,7 +4,7 @@ import { fakeDelay } from "@/utils/fakeDelay"
 
 
 export async function GET(req:NextRequest){
-    // console.log('get lessons')
+    console.log('***get lessons***')
 
     
     const {searchParams} = new URL(req.nextUrl)
@@ -18,7 +18,7 @@ export async function GET(req:NextRequest){
     if(meetingStatusParam){
     if(Number(meetingStatusParam)>=1 && Number(meetingStatusParam)<=3){
         meetingStatus = Number(meetingStatusParam);
-        console.log('meetingStatus',meetingStatus)
+        // console.log('meetingStatus',meetingStatus)
     }
     }
 
@@ -50,7 +50,7 @@ export async function GET(req:NextRequest){
         `;
     }
 
-    console.log(sqlQuery)
+    // console.log(sqlQuery)
     const [rows, fields] = await connection.execute(sqlQuery)
 
     const selectedLessons = rows;

@@ -1,0 +1,34 @@
+.infoCard{
+    width: 100%;
+    background-color: var(--color-lightBlue);
+    border-radius: var(--borderRadius-normal);
+    padding: var(--padding-m-elemnts);
+    /* color: var(--color-darkBlue); */
+    text-align: center;
+}
+.infoCard__month{
+    font-size: 1.5rem;
+    font-weight: 600;
+
+}
+
+.infoCard__day{
+    font-size: 5.5rem;
+    font-weight: 800;
+    color: yellow;
+}
+.infoCard__dayOfWeek{
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--elements-tertiary-color);
+}
+.infoCard__meetings{
+    font-size: 1.5rem;
+    font-weight: 600;
+    
+}
+.infoCard__meetings__count{
+    color: var(--elements-secondary-color);
+    font-weight: 600;
+    font-size: 2rem;
+}
