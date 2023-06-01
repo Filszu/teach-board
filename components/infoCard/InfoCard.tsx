@@ -1,7 +1,15 @@
-import { MeetingsToday } from '../magicnumbers/meetingsToday/MeetingsToday';
 import styles from './InfoCard.module.css';
-export default function InfoCard() {
+
+interface Props {
+  sheduledMeetings: number | null;
+}
+export default function InfoCard(props: Props) {
   
+  let meetingsToday = 0;
+  if(props.sheduledMeetings){
+    meetingsToday = props.sheduledMeetings;
+  }
+
   // get current date day
   const date = new Date();
   const day = date.getDay();
