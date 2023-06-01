@@ -47,10 +47,12 @@ const MeetingCard = (props: Props) => {
     console.log('cardIndex',props.cardIndex??"no index")
   return (
     <>
-     <Slide direction="up" in={true} timeout={(props.cardIndex??1)*150}>
+     {/* <Slide direction="up" in={true} timeout={(props.cardIndex??1)*150}> */}
           
       
-        <div className={styles.meetingCard}>
+        <div className={`anim__slide-top ${styles.meetingCard} `}
+          style={{animationDelay:`${(props.cardIndex??1)*.1}s`}}
+        >
             <h3><EventIcon fontSize="inherit"/>{date} <AccessTimeIcon fontSize="inherit"/>{time.substring(0, 5)} </h3>
             <section className={styles.meetingCard__desc}>
 
@@ -76,7 +78,7 @@ const MeetingCard = (props: Props) => {
             
 
         </div>
-    </Slide>
+    {/* </Slide> */}
     </>
   )
 }

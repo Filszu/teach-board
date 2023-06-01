@@ -5,6 +5,7 @@
     padding: var(--padding-m-elemnts);
     /* color: var(--color-darkBlue); */
     text-align: center;
+    margin-top: var(--margin-m-elemnts);
 }
 .infoCard__month{
     font-size: 1.5rem;

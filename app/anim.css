@@ -1,0 +1,20 @@
+.anim__slide-top{
+    animation: slide-top 0.5s ease-in-out 0.2s both; 
+}
+@keyframes slide-top {
+    0% {
+      -webkit-transform: translateY(100px) scale(0.8);
+              transform: translateY(100px) scale(0.8);
+              
+    }
+    80% {
+      -webkit-transform: translateY(0) scale(1.01);
+              transform: translateY(0) scale(1.01);
+              
+    }
+    100% {
+      -webkit-transform: translateY(0) scale(1);
+              transform: translateY(0) scale(1);
+              
+    }
+  }

@@ -9,8 +9,8 @@ export default function Loading() {
         //     <LoadingBox />
             
         // </section>
-        <section style={{gridColumn:"1/13"}}>
-            <LoadingBox />
+        <section style={{gridColumn:"1/13", display:"flex", justifyContent:"center"}}>
+            <div style={{minWidth:"10px"}}></div><LoadingBox />
         </section>
         
     );

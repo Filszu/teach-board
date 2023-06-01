@@ -18,11 +18,12 @@
 
 
     
-    place-items: center;
-    
+    /* place-items: center; */
+    /* justify-items: space-around; */
+    /* align-items: center; */
 
     /* display: flex; */
-    justify-content: center;
+    /* justify-content: center; */
 }
 .infoBox{
     grid-column: 1/4;

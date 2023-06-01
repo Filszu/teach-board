@@ -5,12 +5,10 @@
     padding: var(--padding-m-elemnts);
     /* color: var(--color-darkBlue); */
     color : var(--color-black);
-    margin: 10px 0;
-    /* -webkit-animation: slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s both;
-	animation: slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s both; */
-    /* transition for with and height 2s ease-in-out*/
-    /* transition: all .2s ease-in-out; */
- 
+    margin: 0 0 20px 0;
+     /* -webkit-animation: slide-top 0.5s ease-in-out both; */
+	
+   
 }
 
 .meetingCard__desc{
@@ -37,24 +35,17 @@
 {
     width: 100%;
 }
-@-webkit-keyframes slide-top {
+/* @-webkit-keyframes slide-top {
     0% {
-      -webkit-transform: translateY(100px);
-              transform: translateY(100px);
+      -webkit-transform: translateY(100px) scale(0.8);
+              transform: translateY(100px) scale(0.8);
+              
     }
     100% {
-      -webkit-transform: translateY(0);
-              transform: translateY(0);
+      -webkit-transform: translateY(0) scale(1);
+              transform: translateY(0) scale(1);
+              
     }
-  }
-  @keyframes slide-top {
-    0% {
-      -webkit-transform: translateY(100px);
-              transform: translateY(100px);
-    }
-    100% {
-      -webkit-transform: translateY(0);
-              transform: translateY(0);
-    }
-  }
+  } */
+
   
