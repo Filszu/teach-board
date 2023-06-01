@@ -1,3 +1,4 @@
+import { MeetingsToday } from '../magicnumbers/meetingsToday/MeetingsToday';
 import styles from './InfoCard.module.css';
 export default function InfoCard() {
   
@@ -25,7 +26,8 @@ export default function InfoCard() {
       <div className={styles.infoCard__meetings}>
         <p>⏰<br/>Meetings Today: </p>
         <p className={styles.infoCard__meetings__count}>
-          5
+          {/* <MeetingsToday/> */}
+          0
         </p>
       </div>
 
