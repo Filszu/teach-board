@@ -1,14 +1,24 @@
+import { Meeting } from '@/types/types';
 import styles from './InfoCard.module.css';
 
 interface Props {
-  sheduledMeetings: number | null;
+  // sheduledMeetings: number | null;
+  sheduledMeetings: Meeting[] | null;
 }
+
+function filterTodayMeetings(meetings: Meeting[], date:Date) {
+  const todayMeetings = meetings.filter((meeting) => {
+    const meetingDate = new Date(meeting.dateTime);
+    return meetingDate.getDate() === date.getDate();
+  }
+  );
+  return todayMeetings.length;
+   
+}
+
 export default function InfoCard(props: Props) {
   
-  let meetingsToday = 0;
-  if(props.sheduledMeetings){
-    meetingsToday = props.sheduledMeetings;
-  }
+  
 
   // get current date day
   const date = new Date();
@@ -19,6 +29,12 @@ export default function InfoCard(props: Props) {
   const month = date.getMonth();
   const monthList = ["January","February","March","April","May","June","July","August","September","October","November","December"];
   const currentMonth = monthList[month];
+
+  let meetingsToday = 0;
+  if(props.sheduledMeetings){
+    // meetingsToday = props.sheduledMeetings;
+    meetingsToday = filterTodayMeetings(props.sheduledMeetings, date);
+  }
 
   return (
     <section className={styles.infoCard}>
@@ -31,12 +47,12 @@ export default function InfoCard(props: Props) {
       <div className={styles.infoCard__dayOfWeek}>
         <p>{dayOfWeek}</p>
       </div>
+      <br />
       <div className={styles.infoCard__meetings}>
-        <p>⏰<br/>Meetings Today: </p>
-        <p className={styles.infoCard__meetings__count}>
-          {/* <MeetingsToday/> */}
-          0
-        </p>
+        <p>⏰Meetings Today: </p>
+        <span className={styles.infoCard__meetings__count}>
+        {meetingsToday}
+        </span>
       </div>
 
 

@@ -37,7 +37,7 @@ const Page = async(props: Props) => {
   return (
         <>
           <section className={styles.infoBox}>
-            <InfoCard sheduledMeetings={latestMeetings.length}/>
+            <InfoCard sheduledMeetings={latestMeetings}/>
             
           </section>
           <section 

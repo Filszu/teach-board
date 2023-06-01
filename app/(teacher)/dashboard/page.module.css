@@ -9,17 +9,26 @@
 }
 
 .panelContainer{
+    margin: 0 auto;
+    padding: 2rem 3rem;
+
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    margin: 2rem 8rem;
-    /* grid space */
     grid-gap: 1rem;
+
+
+    
+    place-items: center;
+    
+
+    /* display: flex; */
+    justify-content: center;
 }
 .infoBox{
     grid-column: 1/4;
 }
 
 .meetingReminderContainer{
-    grid-column: 4/12;
+    grid-column: 4/13;
 }
 

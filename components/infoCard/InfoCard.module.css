@@ -30,5 +30,6 @@
 .infoCard__meetings__count{
     color: var(--elements-secondary-color);
     font-weight: 600;
-    font-size: 2rem;
+    font-size: 3rem;
+    
 }
