@@ -28,75 +28,9 @@ interface Props {
 //   },
 // });
 
-const customTheme = (outerTheme: Theme) =>
-  createTheme({
-    palette: {
-      mode: outerTheme.palette.mode,
-      text: {
-              primary: '#FFAE52', // Set the text color to white
-            },
-    },
-    components: {
-      MuiTextField: {
-        styleOverrides: {
-          root: {
-            '--TextField-brandBorderColor': '#E07800',
-            '--TextField-brandBorderHoverColor': '#FFAE52',
-            '--TextField-brandBorderFocusedColor': '#FFAE52',
-            '& label.Mui-focused': {
-              color: 'var(--TextField-brandBorderFocusedColor)',
-            },
-          },
-        },
-      },
-      MuiOutlinedInput: {
-        styleOverrides: {
-          notchedOutline: {
-            borderColor: 'var(--TextField-brandBorderColor)',
-          },
-          root: {
-            [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
-              borderColor: 'var(--TextField-brandBorderHoverColor)',
-            },
-            [`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: {
-              borderColor: 'var(--TextField-brandBorderFocusedColor)',
-            },
-          },
-        },
-      },
-      MuiFilledInput: {
-        styleOverrides: {
-          root: {
-            '&:before, &:after': {
-              borderBottom: '5px solid var(--TextField-brandBorderColor)',
-            },
-            '&:hover:not(.Mui-disabled, .Mui-error):before': {
-              borderBottom: '5px solid var(--TextField-brandBorderHoverColor)',
-            },
-            '&.Mui-focused:after': {
-              borderBottom: '2px solid var(--TextField-brandBorderFocusedColor)',
-            },
-          },
-        },
-      },
-      MuiInput: {
-        styleOverrides: {
-          root: {
-            '&:before': {
-              borderBottom: '2px solid var(--TextField-brandBorderColor)',
-            },
-            '&:hover:not(.Mui-disabled, .Mui-error):before': {
-              borderBottom: '2px solid var(--TextField-brandBorderHoverColor)',
-            },
-            '&.Mui-focused:after': {
-              borderBottom: '2px solid var(--TextField-brandBorderFocusedColor)',
-            },
-          },
-        },
-      },
-    },
-  });
 
+
+import { customTheme } from "./customMuiFormStyles";
 const MeetingForm = (props: Props) => {
 
   const outerTheme = useTheme();
@@ -133,6 +67,20 @@ const MeetingForm = (props: Props) => {
 
 
       <TextField label="Outlined secondary" color="secondary" focused />
+      <TextField label="2" color="secondary" focused fullWidth  margin="normal" id="2"/>
+      <TextField
+        name="id3"
+        label="ID3"
+        InputLabelProps={{
+          sx: { color: "red", "&.Mui-focused": { color: "green" } },
+        }}
+    
+        fullWidth
+        margin="normal"
+        color="secondary"
+       
+      
+      />
       <TextField
         name="id"
         label="ID"
