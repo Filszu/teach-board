@@ -1,0 +1,5 @@
+.meetingForm{
+    grid-column: 1/13;
+    display: flex;
+    justify-content: center;
+}
