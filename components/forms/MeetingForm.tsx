@@ -2,30 +2,104 @@
 
 import { Meeting } from "@/types/types";
 import { TextField, Button, FormControl, InputLabel, Select, MenuItem,  createTheme,
-  ThemeProvider, } from '@mui/material';
+  ThemeProvider,
+  Theme,
+  useTheme,
+  outlinedInputClasses, } from '@mui/material';
 import { useState } from "react";
 import styles from './MeetingForm.module.css'
 
 interface Props {
   
 }
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#E07800', // Set the primary color to yellow
-    },
-    secondary:{
-      main: '#ddd',
-    },
-    text: {
-      primary: '#FFAE52', // Set the text color to white
-    },
+// const theme = createTheme({
+//   palette: {
+//     primary: {
+//       main: '#E07800', // Set the primary color to yellow
+//     },
+//     secondary:{
+//       main: '#ddd',
+//     },
+//     text: {
+//       primary: '#FFAE52', // Set the text color to white
+//     },
     
     
-  },
-});
+//   },
+// });
+
+const customTheme = (outerTheme: Theme) =>
+  createTheme({
+    palette: {
+      mode: outerTheme.palette.mode,
+      text: {
+              primary: '#FFAE52', // Set the text color to white
+            },
+    },
+    components: {
+      MuiTextField: {
+        styleOverrides: {
+          root: {
+            '--TextField-brandBorderColor': '#E07800',
+            '--TextField-brandBorderHoverColor': '#FFAE52',
+            '--TextField-brandBorderFocusedColor': '#FFAE52',
+            '& label.Mui-focused': {
+              color: 'var(--TextField-brandBorderFocusedColor)',
+            },
+          },
+        },
+      },
+      MuiOutlinedInput: {
+        styleOverrides: {
+          notchedOutline: {
+            borderColor: 'var(--TextField-brandBorderColor)',
+          },
+          root: {
+            [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
+              borderColor: 'var(--TextField-brandBorderHoverColor)',
+            },
+            [`&.Mui-focused .${outlinedInputClasses.notchedOutline}`]: {
+              borderColor: 'var(--TextField-brandBorderFocusedColor)',
+            },
+          },
+        },
+      },
+      MuiFilledInput: {
+        styleOverrides: {
+          root: {
+            '&:before, &:after': {
+              borderBottom: '5px solid var(--TextField-brandBorderColor)',
+            },
+            '&:hover:not(.Mui-disabled, .Mui-error):before': {
+              borderBottom: '5px solid var(--TextField-brandBorderHoverColor)',
+            },
+            '&.Mui-focused:after': {
+              borderBottom: '2px solid var(--TextField-brandBorderFocusedColor)',
+            },
+          },
+        },
+      },
+      MuiInput: {
+        styleOverrides: {
+          root: {
+            '&:before': {
+              borderBottom: '2px solid var(--TextField-brandBorderColor)',
+            },
+            '&:hover:not(.Mui-disabled, .Mui-error):before': {
+              borderBottom: '2px solid var(--TextField-brandBorderHoverColor)',
+            },
+            '&.Mui-focused:after': {
+              borderBottom: '2px solid var(--TextField-brandBorderFocusedColor)',
+            },
+          },
+        },
+      },
+    },
+  });
 
 const MeetingForm = (props: Props) => {
+
+  const outerTheme = useTheme();
 
   const initialFormState: Meeting = {
           id: 0,
@@ -54,7 +128,7 @@ const MeetingForm = (props: Props) => {
     };
 
   return (
-    // <ThemeProvider theme={theme}>
+    <ThemeProvider theme={customTheme(outerTheme)}>
     <form onSubmit={handleSubmit} className={styles.meetingForm}>
 
 
@@ -72,7 +146,7 @@ const MeetingForm = (props: Props) => {
       />
       <TextField
         name="studentID"
-        label="Student ID"
+        label="Student IDDD"
         value={formData.studentID}
         onChange={handleChange}
         fullWidth
@@ -144,8 +218,11 @@ const MeetingForm = (props: Props) => {
         Submit
       </Button>
     </form>
-    // </ThemeProvider>
+     </ThemeProvider>
   )
 }
+
+
+  
 
 export default MeetingForm
