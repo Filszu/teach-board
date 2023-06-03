@@ -2,6 +2,7 @@ import { Theme, createTheme, outlinedInputClasses } from "@mui/material";
 export const customTheme = (outerTheme: Theme) =>
   createTheme({
     palette: {
+      // mode: 'dark',
       mode: outerTheme.palette.mode,
       text: {
               primary: '#FFAE52', // Set the text color to white

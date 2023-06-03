@@ -1,20 +1,20 @@
 'use client'
 
-import { Meeting } from "@/types/types";
+
+import { Meeting, Student } from "@/types/types";
 import { TextField, Button, FormControl, InputLabel, MenuItem,  createTheme,
   ThemeProvider,
   Theme,
   useTheme,
-  outlinedInputClasses, Select,  SelectChangeEvent } from '@mui/material';
-
-
+  outlinedInputClasses, Select,  SelectChangeEvent, InputAdornment } from '@mui/material';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 
 import { useState } from "react";
 import styles from './MeetingForm.module.css'
 
 interface Props {
-  
+  students: Student[],
 }
 // const theme = createTheme({
 //   palette: {
@@ -36,6 +36,8 @@ interface Props {
 
 import { customTheme } from "./customMuiFormStyles";
 import FaceRating from "../rating/FaceRating";
+
+import BasicDateTimePicker from "../formUI/BasicDateTimePicker";
 // import BasicRating from "../rating/Rating";
 const MeetingForm = (props: Props) => {
 
@@ -43,7 +45,7 @@ const MeetingForm = (props: Props) => {
 
   const [meeting, setMeeting] = useState<Meeting>({
     id: 0,
-    studentID: 0,
+    studentID: props.students[0].id,
     statusID: 1,
     paymentStatusID: 1,
     duration: '',
@@ -67,10 +69,16 @@ const MeetingForm = (props: Props) => {
     
   };
 
+  const handleDateChange = (date: string) => {
+    console.log(date)
+    setMeeting((prevMeeting) => ({ ...prevMeeting, dateTime: date }));
+    
+  };
   
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
+    console.log(meeting);
     // onSubmit(meeting);
   };
 
@@ -79,15 +87,29 @@ const MeetingForm = (props: Props) => {
   return (
     <ThemeProvider theme={customTheme(outerTheme)}>
     <form onSubmit={handleSubmit} className={styles.meetingForm}>
-      <TextField
-        name="studentID"
-        label="Student ID"
-        value={meeting.studentID}
-        onChange={handleChange}
-        required
+
+    
+    <FormControl 
         fullWidth
         margin="normal"
-      />
+      >
+        <InputLabel id="student-label">student</InputLabel>
+        <Select
+          labelId="student-label"
+          id="student"
+          name="studentID"
+          value={meeting.studentID}
+          onChange={handleSelectChange}
+          label="student"
+          
+          
+        >
+          {props.students.map((student) => (
+            <MenuItem key={student.id} value={student.id}>{student.name}</MenuItem>
+          ))}
+          
+        </Select>
+      </FormControl>
 
 
       <FormControl 
@@ -114,7 +136,7 @@ const MeetingForm = (props: Props) => {
         fullWidth
         margin="normal"
       >
-        <InputLabel id="demo-simple-select-label">Payment Status ID</InputLabel>
+        <InputLabel id="demo-simple-select-label">Payment Status</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
@@ -122,7 +144,7 @@ const MeetingForm = (props: Props) => {
           value={meeting.paymentStatusID}
           onChange={handleSelectChange}
           required
-          label="Payment Status ID"
+          label="Payment Status"
           
           
         >
@@ -132,23 +154,28 @@ const MeetingForm = (props: Props) => {
         </Select>
       </FormControl>
       <TextField
-        name="duration"
-        label="Duration"
-        value={meeting.duration}
-        onChange={handleChange}
-        required
-        fullWidth
-        margin="normal"
-      />
-      <TextField
-        name="dateTime"
-        label="Date and Time"
-        value={meeting.dateTime}
-        onChange={handleChange}
-        required
-        fullWidth
-        margin="normal"
-      />
+          name="duration"
+          label="Duration"
+          type="time"
+          value={meeting.duration}
+          onChange={handleChange}
+          required
+          fullWidth
+          margin="normal"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <AccessTimeIcon />
+              </InputAdornment>
+            ),
+            inputProps: {
+              step: 300, // 5 minutes increment
+            },
+          }}
+      />       
+
+
+      <BasicDateTimePicker changeDate={handleDateChange }/>
       <div>
       
         <p style={{margin:"1rem 0"}}>Satisfaction:</p>

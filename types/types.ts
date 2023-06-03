@@ -25,4 +25,14 @@ export type MeetingCardType = "etitable" | "static";
 export type MeetingStatus = "scheduled" | "cancelled" | "completed" |null;
 
 
+export interface Student {
+    id: number;
+    name: string;
+    surname: string;
+    nickname?: string;
+    email: string;
+    active: boolean;
+    joinedDate?: Date | null;
+    notes?: string | null;
+  }
   
