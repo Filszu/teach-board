@@ -91,7 +91,7 @@ export async function POST(request: Request){
     
     try{
 
-        const newMeeting = await postNewMeeting(meeting);
+        const newMeeting = await postNewMeeting({ meeting: meeting });
 
         return new Response(JSON.stringify(
             "succes"),{
