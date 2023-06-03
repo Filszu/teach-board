@@ -73,7 +73,7 @@ const FaceRating= (props: Props) => {
     //   onChange={()=>console.log('changed')}
 
       onChange={(event, newValue) => {
-        console.log(newValue);
+        // console.log(newValue);
         props.handleChange(Number(newValue));
       }}
 
