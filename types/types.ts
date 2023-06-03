@@ -2,10 +2,10 @@ export interface Meeting {
     id: number;
     studentID: number;
     statusID: number | null;
-    paymentStatusID: number;
+    paymentStatusID: number | null;
     duration: string;
     dateTime: string; 
-    satisfaction: number | null;
+    satisfaction: number;
     notes: string;
     student_name?: string;
     student_surname?: string;

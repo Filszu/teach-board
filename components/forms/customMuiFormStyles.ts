@@ -68,5 +68,17 @@ export const customTheme = (outerTheme: Theme) =>
           },
         },
       },
+      MuiInputLabel:{
+        styleOverrides: {
+          root: {
+            color: '#FFAE52',
+            
+
+          },
+          //
+        },
+
+      }
+      
     },
   });

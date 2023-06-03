@@ -1,11 +1,15 @@
 'use client'
 
 import { Meeting } from "@/types/types";
-import { TextField, Button, FormControl, InputLabel, Select, MenuItem,  createTheme,
+import { TextField, Button, FormControl, InputLabel, MenuItem,  createTheme,
   ThemeProvider,
   Theme,
   useTheme,
-  outlinedInputClasses, } from '@mui/material';
+  outlinedInputClasses, Select,  SelectChangeEvent } from '@mui/material';
+
+
+
+
 import { useState } from "react";
 import styles from './MeetingForm.module.css'
 
@@ -31,140 +35,144 @@ interface Props {
 
 
 import { customTheme } from "./customMuiFormStyles";
+import FaceRating from "../rating/FaceRating";
+// import BasicRating from "../rating/Rating";
 const MeetingForm = (props: Props) => {
 
   const outerTheme = useTheme();
 
-  const initialFormState: Meeting = {
-          id: 0,
-          studentID: 0,
-          statusID: null,
-          paymentStatusID: 0,
-          duration: '',
-          dateTime: '',
-          satisfaction: null,
-          notes: '',
+  const [meeting, setMeeting] = useState<Meeting>({
+    id: 0,
+    studentID: 0,
+    statusID: 1,
+    paymentStatusID: 1,
+    duration: '',
+    dateTime: '',
+    satisfaction: 5,
+    notes: '',
+  });
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setMeeting((prevMeeting) => ({ ...prevMeeting, [name]: value }));
   };
 
-    const [formData, setFormData] = useState<Meeting>(initialFormState);
+  const handleSelectChange = (event: SelectChangeEvent<{ value: number }>) => {
+    const { name, value } = event.target;
+    setMeeting((prevMeeting) => ({ ...prevMeeting, [name]: value }));
+  };
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | { value: unknown }>) => {
-      const { name, value } = e.target;
-      setFormData((prevData) => ({ ...prevData, [name]: value }));
-    };
+  const handleRatingChange = (value: number) => {
+    setMeeting((prevMeeting) => ({ ...prevMeeting, satisfaction: value }));
+    
+  };
+
+  
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    // onSubmit(meeting);
+  };
 
 
-
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      // Handle form submission or further processing here
-      console.log(formData);
-    };
 
   return (
     <ThemeProvider theme={customTheme(outerTheme)}>
     <form onSubmit={handleSubmit} className={styles.meetingForm}>
-
-
-      <TextField label="Outlined secondary" color="secondary" focused />
-      <TextField label="2" color="secondary" focused fullWidth  margin="normal" id="2"/>
-      <TextField
-        name="id3"
-        label="ID3"
-        InputLabelProps={{
-          sx: { color: "red", "&.Mui-focused": { color: "green" } },
-        }}
-    
-        fullWidth
-        margin="normal"
-        color="secondary"
-       
-      
-      />
-      <TextField
-        name="id"
-        label="ID"
-        value={formData.id}
-        onChange={handleChange}
-        fullWidth
-        margin="normal"
-        color="secondary"
-       
-      
-      />
       <TextField
         name="studentID"
-        label="Student IDDD"
-        value={formData.studentID}
+        label="Student ID"
+        value={meeting.studentID}
         onChange={handleChange}
+        required
         fullWidth
         margin="normal"
-        color="success"
       />
+
+
+      <FormControl 
+        fullWidth
+        margin="normal"
+      >
+        <InputLabel id="lessonStatus-label">Lesson status</InputLabel>
+        <Select
+          labelId="lessonStatus-label"
+          id="lessonStatus"
+          name="statusID"
+          value={meeting.statusID}
+          onChange={handleSelectChange}
+          label="Lesson status"
+          
+          
+        >
+          <MenuItem value={1}>✅completed</MenuItem>
+          <MenuItem value={2}>❌cancelled</MenuItem>
+          <MenuItem value={3} selected={true}>⏰scheduled</MenuItem>
+        </Select>
+      </FormControl>
+      <FormControl
+        fullWidth
+        margin="normal"
+      >
+        <InputLabel id="demo-simple-select-label">Payment Status ID</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          name="paymentStatusID"
+          value={meeting.paymentStatusID}
+          onChange={handleSelectChange}
+          required
+          label="Payment Status ID"
+          
+          
+        >
+          <MenuItem value={1}><span style={{color:"var(--color-paid)"}}>paid</span></MenuItem>
+          <MenuItem value={2}  selected={true}><span style={{color:"var(--color-unpaid)"}}>unpaid</span></MenuItem>
+          
+        </Select>
+      </FormControl>
       <TextField
         name="duration"
         label="Duration"
-        value={formData.duration}
+        value={meeting.duration}
         onChange={handleChange}
+        required
         fullWidth
         margin="normal"
       />
       <TextField
         name="dateTime"
-        label="Date & Time"
-        value={formData.dateTime}
+        label="Date and Time"
+        value={meeting.dateTime}
         onChange={handleChange}
+        required
         fullWidth
         margin="normal"
       />
+      <div>
+      
+        <p style={{margin:"1rem 0"}}>Satisfaction:</p>
+        
+
+        <FaceRating value={meeting.satisfaction} handleChange={handleRatingChange}/>
+        {/* <BasicRating/> */}
+      </div>
+      
       <TextField
         name="notes"
         label="Notes"
-        value={formData.notes}
+        value={meeting.notes}
         onChange={handleChange}
-        fullWidth
-        margin="normal"
-        multiline
-        rows={4}
-      />
-      <FormControl fullWidth margin="normal">
-        <InputLabel>Status</InputLabel>
-        <Select
-          name="statusID"
-          value={formData.statusID}
-          onChange={handleChange}
-          fullWidth
-        >
-          <MenuItem value={null}>None</MenuItem>
-          <MenuItem value={1}>Status 1</MenuItem>
-          <MenuItem value={2}>Status 2</MenuItem>
-          {/* Add more menu items as needed */}
-        </Select>
-      </FormControl>
-      <FormControl fullWidth margin="normal">
-        <InputLabel>Payment Status</InputLabel>
-        <Select
-          name="paymentStatusID"
-          value={formData.paymentStatusID}
-          onChange={handleChange}
-          fullWidth
-        >
-          <MenuItem value={1}>Payment Status 1</MenuItem>
-          <MenuItem value={2}>Payment Status 2</MenuItem>
-          {/* Add more menu items as needed */}
-        </Select>
-      </FormControl>
-      <TextField
-        name="satisfaction"
-        label="Satisfaction"
-        value={formData.satisfaction || ''}
-        onChange={handleChange}
+        required
         fullWidth
         margin="normal"
       />
       <Button type="submit" variant="contained" color="primary">
         Submit
       </Button>
+
+     
+    
     </form>
      </ThemeProvider>
   )

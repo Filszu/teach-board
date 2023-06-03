@@ -1,5 +1,7 @@
 .meetingForm{
     color: var(--elements-secondary-color);
     /* background-color: aquamarine; */
+    width: clamp(300px, 100%, 1200px);
+
     
 }
