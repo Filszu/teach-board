@@ -82,7 +82,7 @@ export async function GET(req:NextRequest){
 
 export async function POST(request: Request){
     console.log('***post lesson***')
-    const meeting:Meeting = await request.json();
+    const meeting = await request.json();
     // console.log(req.body)
     // console.log(meeting)
 
@@ -91,7 +91,7 @@ export async function POST(request: Request){
     
     try{
 
-        const newMeeting = await postNewMeeting({ meeting: meeting });
+        const newMeeting = await postNewMeeting(meeting);
 
         return new Response(JSON.stringify(
             "succes"),{
