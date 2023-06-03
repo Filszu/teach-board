@@ -84,7 +84,7 @@ export async function POST(request: Request){
     console.log('***post lesson***')
     const meeting:Meeting = await request.json();
     // console.log(req.body)
-    console.log(meeting)
+    // console.log(meeting)
 
     
     

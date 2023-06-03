@@ -3,19 +3,24 @@ import axios from "axios";
 
 export async function postMeeting(meeting:Meeting) {
     
-    let udateTime = '';
+    let updatedTime = '';
     if(meeting.dateTime){
         const dt = meeting.dateTime.toString();
-        udateTime = new Date(dt).toISOString().slice(0, 19).replace('T', ' ');
+        updatedTime = new Date(dt).toISOString().slice(0, 19).replace('T', ' ');
     }else{
-        udateTime= new Date().toISOString().slice(0, 19).replace('T', ' ');
+        updatedTime= new Date().toISOString().slice(0, 19).replace('T', ' ');
     }
-    console.log('dateTime:',  udateTime)
+    console.log('dateTime:',  updatedTime)
 
-    const newMeeting = {
-        ...meeting,
-        dateTime: udateTime
-    }
+    // const uMeeting:Meeting = {
+    //     ...meeting,
+    //     dateTime: updatedTime
+    // }
+
+    // console.log('newMeeting:', uMeeting)
+
+    meeting.dateTime = updatedTime;
+    console.log('uMeeting:', meeting)
 
 
     // console.log('postNewMeeting:',meeting);
