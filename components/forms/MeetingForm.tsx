@@ -15,6 +15,7 @@ import styles from './MeetingForm.module.css'
 
 interface Props {
   students: Student[],
+  // postNewMeeting: (meeting: Meeting) => void,
 }
 // const theme = createTheme({
 //   palette: {
@@ -38,6 +39,7 @@ import { customTheme } from "./customMuiFormStyles";
 import FaceRating from "../rating/FaceRating";
 
 import BasicDateTimePicker from "../formUI/BasicDateTimePicker";
+import { postMeeting } from "./postMeeting";
 // import BasicRating from "../rating/Rating";
 const MeetingForm = (props: Props) => {
 
@@ -46,9 +48,9 @@ const MeetingForm = (props: Props) => {
   const [meeting, setMeeting] = useState<Meeting>({
     id: 0,
     studentID: props.students[0].id,
-    statusID: 1,
-    paymentStatusID: 1,
-    duration: '',
+    statusID: 3,
+    paymentStatusID: 2,
+    duration: '01:00',
     dateTime: '',
     satisfaction: 5,
     notes: '',
@@ -79,6 +81,7 @@ const MeetingForm = (props: Props) => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     console.log(meeting);
+    postMeeting(meeting);
     // onSubmit(meeting);
   };
 
@@ -154,28 +157,25 @@ const MeetingForm = (props: Props) => {
         </Select>
       </FormControl>
       <TextField
-          name="duration"
-          label="Duration"
-          type="time"
-          value={meeting.duration}
-          onChange={handleChange}
-          required
-          fullWidth
-          margin="normal"
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <AccessTimeIcon />
-              </InputAdornment>
-            ),
-            inputProps: {
-              step: 300, // 5 minutes increment
-            },
-          }}
-      />       
+  name="duration"
+  label="Duration"
+  value={meeting.duration}
+  
+  onChange={handleChange}
+  inputProps={{
+    pattern: "^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$",
+    inputMode: "numeric",
+  }}
+  InputProps={{
+    endAdornment: <InputAdornment position="end">:</InputAdornment>,
+  }}
+  required
+  fullWidth
+  margin="normal"
+/>
 
 
-      <BasicDateTimePicker changeDate={handleDateChange }/>
+      <BasicDateTimePicker changeDate={handleDateChange } />
       <div>
       
         <p style={{margin:"1rem 0"}}>Satisfaction:</p>
@@ -190,10 +190,13 @@ const MeetingForm = (props: Props) => {
         label="Notes"
         value={meeting.notes}
         onChange={handleChange}
-        required
+        multiline
+       
+        minRows={2}
         fullWidth
         margin="normal"
       />
+
       <Button type="submit" variant="contained" color="primary">
         Submit
       </Button>

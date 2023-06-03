@@ -22,7 +22,7 @@ export const BasicRating = (props: Props) =>{
         value={props.value}
         onChange={(event, newValue) => {
         //   setValue(newValue);
-            props.handleChange(newValue)
+            props.handleChange(Number(newValue))
         }}
         // value={props.value}
         // onChange={props.handleChange}

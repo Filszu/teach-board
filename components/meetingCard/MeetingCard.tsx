@@ -39,7 +39,8 @@ interface Props {
 const MeetingCard = (props: Props) => {
     const meeting = props.cardDetails;
 
-    const [date, time] = meeting.dateTime.split("T");
+    
+    const [date, time] = meeting.dateTime?meeting.dateTime.split("T"):["?","?"];
 
     
     console.log('meeting',meeting);

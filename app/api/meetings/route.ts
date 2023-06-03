@@ -1,6 +1,8 @@
 import { NextRequest } from "next/server"
 import { db_pool } from "@/utils/dbConnection"
 import { fakeDelay } from "@/utils/fakeDelay"
+import { Meeting } from "@/types/types"
+import { postNewMeeting } from "@/lib/postNewMeeting"
 
 
 export async function GET(req:NextRequest){
@@ -76,3 +78,32 @@ export async function GET(req:NextRequest){
     
 }
 
+
+
+export async function POST(request: Request){
+    console.log('***post lesson***')
+    const meeting:Meeting = await request.json();
+    // console.log(req.body)
+    console.log(meeting)
+
+    
+    
+    
+    try{
+
+        const newMeeting = await postNewMeeting(meeting);
+
+        return new Response(JSON.stringify(
+            "succes"),{
+            status:200,
+        }
+        )
+    }
+    catch(error){
+        console.log(error)
+        return new Response(JSON.stringify(
+            {msg:"Error fetching data from database" }),{
+            status:500,
+        })
+    }
+}

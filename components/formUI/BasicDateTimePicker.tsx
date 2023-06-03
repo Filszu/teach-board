@@ -38,6 +38,7 @@ export default function BasicDateTimePicker(props: Props) {
                 console.log(newValue)
                 props.changeDate(String(newValue))
                 
+                
             }}
         />
         {/* <StaticDateTimePicker orientation="landscape" /> */}

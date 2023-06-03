@@ -15,7 +15,7 @@ export async function GET(req:NextRequest){
     try {
     
 
-    await fakeDelay(1000);
+    // await fakeDelay(1000);
     const selectedStudents = await getStudents();  
 
     // console.log(selectedLessons, '\n\n')

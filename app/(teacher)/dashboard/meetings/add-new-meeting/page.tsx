@@ -1,6 +1,7 @@
 import { MeetingForm } from '@/components';
 import styles from './page.module.css'
-import { Student } from '@/types/types';
+import { Meeting, Student } from '@/types/types';
+import axios from 'axios';
 
 
 interface Props {
@@ -16,21 +17,29 @@ async function getStudents(){
   return res.json();
 }
 
-async function postNewMeeting() {
-    console.log('postNewMeeting');
-}
+// async function postNewMeeting(meeting: Meeting) {
+//     console.log('postNewMeeting');
+//     try {
+//         const response = await axios.post('http://localhost:3000/api/meetings', meeting);
+//         console.log('Meeting created:', response.data);
+//       } catch (error) {
+//         throw new Error('Failed to post data');
+//       }
+// }
 
 const Page = async(props: Props) => {
 
     const students: Student[] = await getStudents();
-    console.log(students);
+    // console.log(students);
 
     
     return (
         <>
             <section className={styles.meetingForm}>
                 <h2>Add new meeting</h2>
-                <MeetingForm students={students}/>
+                <MeetingForm students={students} 
+                // postNewMeeting={postNewMeeting}
+                />
             </section>
             
         </>
