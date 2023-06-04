@@ -35,6 +35,60 @@ interface Props {
 //     satisfaction: number | null;
 //     notes: string;
 // };
+function calcualteStartingIn(dateTime:string){
+  
+  const meetingTime = new Date(dateTime);
+  const currentTime = new Date();
+  const timeDiff = meetingTime.getTime() - currentTime.getTime();
+
+  
+
+  const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+
+  // const startingIn = `${days} day(s), ${hours} hour(s), ${minutes} minute(s)`;
+  // starting in as object 
+  const startingIn = {
+    days,
+    hours,
+    minutes
+  }
+
+  let msg;
+  //if today: starting in hh:mm
+  if(days === 0 && (hours > 0 || minutes > 0)){
+    msg = `soon - in `;
+    if(hours ===0){
+      msg+=`${minutes}m`;
+    }
+    else{
+      msg+=`${hours}h:${minutes}m`;
+    }
+  }
+  //if tomorrow: starting in tomorrow hh:mm
+  if(days === 1){
+    msg = `tomorrow`;
+  }
+  //if in 2 days: starting in day after tomorrow hh:mm
+  if(days === 2){
+    msg = `in 2 days`;
+  }
+  // The meeting took place
+  if(days < 0 || (days === 0 && hours < 0)){
+    msg = `took place`;
+  }
+  // the meeting took place today
+
+  
+
+  return {...startingIn,msg};
+
+  // if (timeDiff <= 0) {
+  //   return "00:00"; // Meeting has already started
+  // }
+
+}
 
 const MeetingCard = (props: Props) => {
     const meeting = props.cardDetails;
@@ -42,10 +96,20 @@ const MeetingCard = (props: Props) => {
     
     const [date, time] = meeting.dateTime?meeting.dateTime.split("T"):["?","?"];
 
+    let startingIn = null;
+    if(meeting.dateTime){
+       startingIn= calcualteStartingIn(meeting.dateTime);
+      console.log('startingIn',startingIn);
+
+    }
+
     
     console.log('meeting',meeting);
     const [showDetails, setShowDetails] = useState(false)
     console.log('cardIndex',props.cardIndex??"no index")
+
+    
+
   return (
     <>
      {/* <Slide direction="up" in={true} timeout={(props.cardIndex??1)*150}> */}
@@ -54,13 +118,24 @@ const MeetingCard = (props: Props) => {
         <div className={`anim__slide-top ${styles.meetingCard} `}
           style={{animationDelay:`${(props.cardIndex??1)*.1}s`}}
         >
-            <h3><EventIcon fontSize="inherit"/>{date} <AccessTimeIcon fontSize="inherit"/>{time.substring(0, 5)} </h3>
+            <h3>
+              <div>
+                <EventIcon fontSize="inherit"/>{date} <AccessTimeIcon fontSize="inherit"/>{time.substring(0, 5)} 
+              </div>
+              <div className={styles.meetingCard__startingIn}>
+              {startingIn&&
+                 startingIn.msg!=="took place"? "starting "+startingIn.msg: "took place"}
+                {/* {startingIn.days==0?? `${startingIn.hours}h ${startingIn.minutes} m`}
+                {startingIn.days<0?? `Meeting has already started`} */}
+              </div>
+               
+            </h3>
             <section className={styles.meetingCard__desc}>
 
               <div className={styles.meetingCard__desc__header}>
                 <h2>New meeting with <u><b>{meeting.student_name??"unknow Name"} {meeting.student_surname??""}</b></u></h2>
                 <section className={styles.meetingCard__actionButtons}>
-                  <Link href={`./meetings/${meeting.id}/edit`}><Button variant="text" startIcon={<EditIcon/>} color="inherit">edit</Button></Link>
+                  <Link href={{pathname:`./dashboard/meetings/${meeting.id}`, query: { displayMode: 'edit' }}}><Button variant="text" startIcon={<EditIcon/>} color="inherit">edit</Button></Link>
                   <Button variant="text" startIcon={<ExpandMoreIcon/>} color="inherit" onClick={()=>setShowDetails(!showDetails)}>more</Button>
                 </section>
               </div>

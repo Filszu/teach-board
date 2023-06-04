@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Meeting } from '@/types/types';
 import { Suspense } from 'react';
 import LatestMeetings from './LatestMeetings';
+import Link from 'next/link';
 
 
 
@@ -43,6 +44,12 @@ const Page = async(props: Props) => {
           <section 
             className={styles.meetingReminderContainer}
           >
+            {
+              //meetings < 1
+              (latestMeetings.length < 1)&& <h2>Create new <Link href="dashboard/meetings/add-new-meeting">meeting</Link></h2>
+             
+
+            }
             {/* <Suspense fallback={<p>Loading🕛</p>}> */}
             <Suspense fallback={<LoadingBox/>}>
               <LatestMeetings 

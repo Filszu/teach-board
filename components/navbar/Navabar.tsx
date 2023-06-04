@@ -10,7 +10,7 @@ const Navabar = (props: Props) => {
   return (
     <nav className={styles["nav"]}>
         <div>
-         <h2>Teacher Dashboard</h2>
+        <Link href="./dashboard"><h2>Teacher Dashboard</h2></Link>
         </div>
         <div className={styles.menuLeft}>
           <Link href="./dashboard/meetings/add-new-meeting">

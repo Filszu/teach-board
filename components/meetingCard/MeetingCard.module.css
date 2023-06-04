@@ -35,6 +35,16 @@
 {
     width: 100%;
 }
+.meetingCard h3{
+    display: flex;
+    justify-content: space-between;
+}
+.meetingCard__startingIn{
+
+    color: var(--color-darkBlue);
+    /* color: var(--color-completed) */
+
+}
 /* @-webkit-keyframes slide-top {
     0% {
       -webkit-transform: translateY(100px) scale(0.8);
