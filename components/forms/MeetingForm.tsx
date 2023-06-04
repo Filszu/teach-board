@@ -88,7 +88,7 @@ const MeetingForm = (props: Props) => {
     event.preventDefault();
   
     const meetingUrl = await postMeeting(meeting);
-    // console.log(meetingUrl)
+    console.log(meetingUrl)
     // router.push(meetingUrl)
     // redirect('/login');
 

@@ -37,7 +37,7 @@ export default function InfoCard(props: Props) {
   }
 
   return (
-    <section className={styles.infoCard}>
+    <section className={`anim__jumpIn ${styles.infoCard}`}>
       <div className={styles.infoCard__month}>
         <p>{currentMonth}</p>
       </div>

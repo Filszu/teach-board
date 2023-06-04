@@ -30,7 +30,7 @@ export async function postMeeting(meeting:Meeting) {
     try {
         const response = await axios.post('http://localhost:3000/api/meetings', {meeting});
         console.log('Meeting created:', response.data);
-        const meetingUrl = `/meetings/${response.data.rowID}`;
+        const meetingUrl = `./${response.data.rowID}`;
         console.log('meetingUrl:', meetingUrl);
         return meetingUrl;
         // return response;

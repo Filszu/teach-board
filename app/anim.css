@@ -18,3 +18,23 @@
               
     }
   }
+.anim__jumpIn{
+    animation: jump-in 0.5s ease-in-out 0.2s both; 
+}
+@keyframes jump-in {
+    0% {
+      -webkit-transform:  scale(0.8);
+              transform:  scale(0.8);
+              
+    }
+    80% {
+      -webkit-transform: scale(1.01);
+              transform: scale(1.01);
+              
+    }
+    100% {
+      -webkit-transform:  scale(1);
+              transform:  scale(1);
+              
+    }
+  }
