@@ -32,7 +32,7 @@ async function getLatestMeetings() {
 
 const Page = async(props: Props) => {
   const latestMeetings:Meeting[] = await getLatestMeetings();
-  console.log('latestMeetings',latestMeetings);
+  // console.log('latestMeetings',latestMeetings);
 
   return (
         <>
