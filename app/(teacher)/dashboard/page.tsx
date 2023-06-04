@@ -11,7 +11,7 @@ import LatestMeetings from './LatestMeetings';
 type Props = {}
 
 async function getLatestMeetings() {
-  const res = await fetch('http://localhost:3000/api/meetings?meetingStatus=3&showKeysNames=true&orderBy=dateTime&arrange=ASC',{ 
+  const res = await fetch('http://localhost:3000/api/meetings?meetingStatus=3&showKeysNames=true&orderBy=dateTime&arrange=ASC&limit=5',{ 
   next: { revalidate: 10},
     // cache: 'no-store'
   });

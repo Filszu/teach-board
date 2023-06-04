@@ -14,6 +14,7 @@ export async function GET(req:NextRequest){
     const showKeysNames:boolean = (searchParams.get('showKeysNames')?.toLowerCase?.() === 'true');
     const orderBy:string = searchParams.get('orderBy') || 'id';
     const arrange:string = searchParams.get('arrange') || 'DESC';
+    const limit:number = Number(searchParams.get('limit')) || 10;
 
 
     let meetingStatus=0;
@@ -48,6 +49,7 @@ export async function GET(req:NextRequest){
         JOIN payment_statuses AS ps ON l.paymentStatusID = ps.id
         WHERE 1=1 ${meetingStatus!==0?" AND statusID="+meetingStatus:""}
         ORDER BY l.${orderBy} ${arrange}
+        LIMIT ${limit}
         ;
         `;
     }

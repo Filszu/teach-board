@@ -1,0 +1,5 @@
+.meetingsContainer{
+    grid-column: 1/13;
+    display: flex;
+    justify-items: center;
+}
