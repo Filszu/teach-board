@@ -10,6 +10,10 @@
 	
    
 }
+.meetingCard_completed{
+    filter: grayscale(80%);
+    /* background-color: blueviolet; */
+}
 
 .meetingCard__desc{
     background-color: var(--elements-tertiary-color);

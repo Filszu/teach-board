@@ -18,12 +18,7 @@ import Slide from '@mui/material/Slide';
 import styles from './MeetingCard.module.css'
 import { useState } from "react";
 import Link from "next/link";
-interface Props {
-    cardType?: MeetingCardType,
-    cardDetails: Meeting,
-    cardIndex?: number,
 
-}
 
 // export type Meeting = {
 //     id: number;
@@ -89,10 +84,19 @@ function calcualteStartingIn(dateTime:string){
   // }
 
 }
+interface Props {
+  cardType?: MeetingCardType,
+  cardDetails: Meeting,
+  cardIndex?: number,
 
+}
 const MeetingCard = (props: Props) => {
     const meeting = props.cardDetails;
 
+    meeting.dateTime = new Date(meeting.dateTime).toISOString();
+
+    console.log('meeting DT',meeting.dateTime)
+    console.log(new Date(meeting.dateTime).toLocaleString())
     
     const [date, time] = meeting.dateTime?meeting.dateTime.split("T"):["?","?"];
 
@@ -115,8 +119,8 @@ const MeetingCard = (props: Props) => {
      {/* <Slide direction="up" in={true} timeout={(props.cardIndex??1)*150}> */}
           
       
-        <div className={`anim__slide-top ${styles.meetingCard} `}
-          style={{animationDelay:`${(props.cardIndex??1)*.1}s`}}
+        <div className={`anim__slide-top ${styles.meetingCard} ${startingIn?.msg=="took place"?styles.meetingCard_completed:""}
+         `}
         >
             <h3>
               <div>
