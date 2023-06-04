@@ -1,4 +1,4 @@
-import { NextRequest } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 import { db_pool } from "@/utils/dbConnection"
 import { fakeDelay } from "@/utils/fakeDelay"
 import { Meeting } from "@/types/types"
@@ -94,10 +94,11 @@ export async function POST(request: Request){
         const newMeeting = await postNewMeeting(meeting);
 
         return new Response(JSON.stringify(
-            "succes"),{
+            newMeeting),{
             status:200,
         }
         )
+        // return NextResponse.redirect(new URL('/dashboard', request.url));
     }
     catch(error){
         console.log(error)

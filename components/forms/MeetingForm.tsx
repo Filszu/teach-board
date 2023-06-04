@@ -13,6 +13,9 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { useState } from "react";
 import styles from './MeetingForm.module.css'
 
+// import { useRouter } from "next/router"
+// import { redirect } from 'next/navigation';
+
 interface Props {
   students: Student[],
   // postNewMeeting: (meeting: Meeting) => void,
@@ -43,6 +46,7 @@ import { postMeeting } from "./postMeeting";
 // import BasicRating from "../rating/Rating";
 const MeetingForm = (props: Props) => {
 
+  // const router = useRouter();
   const outerTheme = useTheme();
 
   const [meeting, setMeeting] = useState<Meeting>({
@@ -78,10 +82,17 @@ const MeetingForm = (props: Props) => {
   };
   
 
-  const handleSubmit = (event: React.FormEvent) => {
+  
+
+  const handleSubmit = async(event: React.FormEvent) => {
     event.preventDefault();
-    console.log(meeting);
-    postMeeting(meeting);
+  
+    const meetingUrl = await postMeeting(meeting);
+    // console.log(meetingUrl)
+    // router.push(meetingUrl)
+    // redirect('/login');
+
+    window.location.href = meetingUrl;
     // onSubmit(meeting);
   };
 
