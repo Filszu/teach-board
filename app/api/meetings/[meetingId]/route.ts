@@ -1,3 +1,5 @@
+import { getMeeting } from "@/lib/getMeeting";
+
 export async function GET(
     request: Request,
     {
@@ -6,11 +8,23 @@ export async function GET(
       params: { meetingId: string };
     },
   ) {
-    const slug = params.meetingId; 
-    return new Response(JSON.stringify(
-        slug),{
+    const slug:string = params.meetingId; 
+
+    try{
+      const meeting = await getMeeting({meetingId:slug});
+      return new Response(JSON.stringify(
+        meeting),{
         status:200,
     })
+    }
+    catch(error){
+      console.log(error)
+      return new Response(JSON.stringify(
+          {msg:"Error fetching data from database" }),{
+          status:500,
+      })
+    }
+    
 
     
   }
