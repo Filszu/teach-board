@@ -1,4 +1,5 @@
 import { getMeeting } from "@/lib/getMeeting";
+import { Meeting } from "@/types/types";
 
 export async function GET(
     request: Request,
@@ -11,11 +12,22 @@ export async function GET(
     const slug:string = params.meetingId; 
 
     try{
-      const meeting = await getMeeting({meetingId:slug});
-      return new Response(JSON.stringify(
-        meeting),{
-        status:200,
-    })
+      const meeting = await getMeeting({meetingId:slug}) as Meeting[];
+
+      if(meeting){
+
+      
+        if(meeting.length === 0){
+          return new Response(JSON.stringify(
+            {msg:"Meeting this this id does not exist" }),{
+            status:404,
+        })
+        }
+        return new Response(JSON.stringify(
+          meeting),{
+          status:200,
+          })
+      }
     }
     catch(error){
       console.log(error)

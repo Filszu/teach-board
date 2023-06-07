@@ -93,15 +93,19 @@ interface Props {
 const MeetingCard = (props: Props) => {
     const meeting = props.cardDetails;
 
-    meeting.dateTime = new Date(meeting.dateTime).toISOString();
-
-    console.log('meeting DT',meeting.dateTime)
-    console.log(new Date(meeting.dateTime).toLocaleString())
+   
     
     const [date, time] = meeting.dateTime?meeting.dateTime.split("T"):["?","?"];
 
     let startingIn = null;
     if(meeting.dateTime){
+
+      meeting.dateTime = new Date(meeting.dateTime).toISOString();
+
+      console.log('meeting DT',meeting.dateTime)
+      console.log(new Date(meeting.dateTime).toLocaleString())
+
+      
        startingIn= calcualteStartingIn(meeting.dateTime);
       console.log('startingIn',startingIn);
 
@@ -124,7 +128,7 @@ const MeetingCard = (props: Props) => {
         >
             <h3>
               <div>
-                <EventIcon fontSize="inherit"/>{date} <AccessTimeIcon fontSize="inherit"/>{time.substring(0, 5)} 
+                <EventIcon fontSize="inherit"/>{date??date} <AccessTimeIcon fontSize="inherit"/>{time.substring(0, 5)} 
               </div>
               <div className={styles.meetingCard__startingIn}>
               {startingIn&&

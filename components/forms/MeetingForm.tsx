@@ -18,6 +18,7 @@ import styles from './MeetingForm.module.css'
 
 interface Props {
   students: Student[],
+  submitData: (meeting:Meeting) => void,
   // postNewMeeting: (meeting: Meeting) => void,
 }
 // const theme = createTheme({
@@ -87,20 +88,24 @@ const MeetingForm = (props: Props) => {
   const handleSubmit = async(event: React.FormEvent) => {
     event.preventDefault();
   
-    const meetingUrl = await postMeeting(meeting);
-    console.log(meetingUrl)
-    // router.push(meetingUrl)
-    // redirect('/login');
+    // const meetingUrl = await postMeeting(meeting);
+    // console.log(meetingUrl)
 
-    window.location.href = meetingUrl;
-    // onSubmit(meeting);
+    props.submitData(meeting);
+
+
+    // window.location.href = meetingUrl;
+
   };
 
 
 
   return (
     <ThemeProvider theme={customTheme(outerTheme)}>
-    <form onSubmit={handleSubmit} className={styles.meetingForm}>
+    <form onSubmit={handleSubmit}
+    
+    
+      className={styles.meetingForm}>
 
     
     <FormControl 
