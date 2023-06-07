@@ -18,7 +18,7 @@ import styles from './MeetingForm.module.css'
 
 interface Props {
   students: Student[],
-  submitData: (meeting:Meeting) => void,
+  submitData: (meeting: Meeting) => Promise<string>,
   // postNewMeeting: (meeting: Meeting) => void,
 }
 // const theme = createTheme({
@@ -91,10 +91,11 @@ const MeetingForm = (props: Props) => {
     // const meetingUrl = await postMeeting(meeting);
     // console.log(meetingUrl)
 
-    props.submitData(meeting);
+    const url = await props.submitData(meeting);
 
 
-    // window.location.href = meetingUrl;
+
+    window.location.href = url;
 
   };
 

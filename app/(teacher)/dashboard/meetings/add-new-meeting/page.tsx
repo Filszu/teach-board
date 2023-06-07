@@ -1,10 +1,11 @@
+// 'use server';
 import { MeetingForm } from '@/components';
 import styles from './page.module.css'
 import { Meeting, Student } from '@/types/types';
 import axios from 'axios';
 import { postMeeting } from '@/components/forms/postMeeting';
-import { revalidate } from '../[id]/page';
 import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 
 
 interface Props {
@@ -30,21 +31,49 @@ async function getStudents(){
 //       }
 // }
 
+const redirectToMeeting = (id:string) => {
+  try{
+    // redirect('dashboard/meetings/'+id);
+    redirect('/dashboard/meetings/129');
+  }catch(error){
+    console.log(error);
+  }
+    
+}
+
 
 
 const Page = async(props: Props) => {
+  // redirect('dashboard/meetings/86');
+  
 
-    const submitData = async(meeting:Meeting) => {
+    // const submitData = async(meeting:Meeting) => {
+      async function submitData(meeting:Meeting) {
         'use server'
         // event.preventDefault();
       
+       
         const meetingUrl = await postMeeting(meeting);
-        console.log(meetingUrl)
-        // router.push(meetingUrl)
-        // redirect('/login');
-        revalidatePath('dashboard/meetings/85')
-        // onSubmit(meeting);
+
+        return meetingUrl+`?displayMode=new`;
+
+
+        // console.log(meetingUrl)
+        // redirectToMeeting(meetingUrl);
+        // redirect('dashboard/meetings/86');
+        // redirect("/")
+        // redirect('/dashboard/meetings/85');
+        
+        // redirect('/meetings/');
+          // revalidatePath("dashboard/meetings/add-new-meeting");
+
+        //redirect js
+        // window.location.href = 'http://localhost:3000/dashboard/meetings/86';
+       
+        
+       
       };
+
 
     const students: Student[] = await getStudents();
     // console.log(students);
