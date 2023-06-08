@@ -10,13 +10,13 @@
 	
    
 }
-.meetingCard_completed{
+.meetingCard_tookPlace{
     filter: grayscale(80%);
     /* background-color: blueviolet; */
 }
 
 .meetingCard__desc{
-    background-color: var(--elements-tertiary-color);
+    /* background-color: var(--elements-tertiary-color); */
     padding: var(--padding-s-elemnts) var(--padding-m-elemnts);
     border-radius: var(--borderRadius-normal);
     margin: 10px 0;
@@ -24,6 +24,37 @@
 
     
 }
+
+
+.meetingCard_status_scheduled{
+    /* background-color: var(--color-shedueled); */
+    .meetingCard__desc{
+        background-color: var(--elements-tertiary-color);
+    }
+    
+}
+
+.meetingCard_status_completed{
+    background-color: var(--color-completed);
+    .meetingCard__desc{
+        background-color: var(--color-completed2);
+    }
+}
+
+.meetingCard_status_canceled{
+    background-color: var(--color-cancelled);
+    .meetingCard__desc{
+        background-color: var(--color-cancelled2);
+    }
+}
+
+
+
+.meetingCard_completed{
+
+}
+
+
 
 .meetingCard__desc__header{
     display: flex;

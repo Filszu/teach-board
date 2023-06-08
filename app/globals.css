@@ -40,9 +40,9 @@
   --card-border-rgb: 131, 134, 135;
 
   /*my custom*/
-  --elements-main-color: #E07800;
+  --elements-main-color: hsl(32, 100%, 44%);
   --elements-secondary-color: #FFAE52;
-  --elements-tertiary-color: #FFDAAE;
+  --elements-tertiary-color: hsl(33, 100%, 84%);
   --color-darkBlue: #006894;
   --color-lightBlue: #009DE0;
   --color-bg:#944F00;
@@ -51,9 +51,11 @@
   --color-paid: #00A300;
   --color-unpaid: #FF0000;
 
-  --color-shedueled: #ff8800;
-  --color-cancelled: #FF0000;
-  --color-completed: #00A300;
+  --color-shedueled: hsl(32, 100%, 50%);
+  --color-cancelled: hsl(0, 65%, 52%);
+  --color-cancelled2: hsl(0, 65%, 58%);
+  --color-completed: hsl(120, 65%, 60%);
+  --color-completed2: hsl(120, 65%, 70%);
 
   --borderRadius-normal: 20px;
 

@@ -116,6 +116,20 @@ const MeetingCard = (props: Props) => {
     const [showDetails, setShowDetails] = useState(false)
     console.log('cardIndex',props.cardIndex??"no index")
 
+    function cardTypeClass(statusID:number | null){
+      switch (statusID) {
+        case 1:
+          return styles.meetingCard_status_completed;
+        case 2:
+          return styles.meetingCard_status_canceled;
+        case 3:
+          return styles.meetingCard_status_scheduled;
+        default:
+          return styles.meetingCard_status_scheduled;
+      }
+
+    }
+
     
 
   return (
@@ -123,7 +137,7 @@ const MeetingCard = (props: Props) => {
      {/* <Slide direction="up" in={true} timeout={(props.cardIndex??1)*150}> */}
           
       
-        <div className={`anim__slide-top ${styles.meetingCard} ${startingIn?.msg=="took place"?styles.meetingCard_completed:""}
+        <div className={`anim__slide-top ${styles.meetingCard} ${cardTypeClass(meeting.statusID)} ${startingIn?.msg=="took place"?styles.meetingCard_tookPlace:""}
          `}
         >
             <h3>

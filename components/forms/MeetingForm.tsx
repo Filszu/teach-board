@@ -91,11 +91,15 @@ const MeetingForm = (props: Props) => {
     // const meetingUrl = await postMeeting(meeting);
     // console.log(meetingUrl)
 
-    const url = await props.submitData(meeting);
 
 
 
-    window.location.href = url;
+    props.submitData(meeting);
+    // const url = await props.submitData(meeting);
+
+
+
+    // window.location.href = url;
 
   };
 

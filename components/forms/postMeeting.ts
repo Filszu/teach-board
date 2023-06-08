@@ -1,10 +1,11 @@
+// 'use server'
 import { Meeting } from "@/types/types";
 import axios from "axios";
 // import { redirect } from "next/navigation"
 // import { useRouter } from "next/router"
 
 export async function postMeeting(meeting:Meeting) {
-
+  // 'use server'
     
     let updatedTime = '';
     if(meeting.dateTime){

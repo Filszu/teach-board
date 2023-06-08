@@ -54,6 +54,9 @@ const Page = async(props: Props) => {
       
        
         const meetingUrl = await postMeeting(meeting);
+        // revalidatePath("/dashboard")
+        // revalidatePath(`dashboard/meetings/${meetingUrl}?displayMode=new`);
+        redirect(`dashboard/meetings/${meetingUrl}?displayMode=new`);
 
         return meetingUrl+`?displayMode=new`;
 
@@ -67,6 +70,7 @@ const Page = async(props: Props) => {
         // redirect('/meetings/');
           // revalidatePath("dashboard/meetings/add-new-meeting");
 
+         
         //redirect js
         // window.location.href = 'http://localhost:3000/dashboard/meetings/86';
        
