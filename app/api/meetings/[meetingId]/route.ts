@@ -61,7 +61,7 @@ export async function PUT(
 
       await putMeeting({ 
         meetingId: mId, 
-        columsToUpadte: {...req.columsToUpdate}
+        columsToUpadte: req.columsToUpdate
       }
       );
         return new Response(JSON.stringify(

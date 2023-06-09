@@ -33,7 +33,7 @@ export async function putMeeting(props: Props) {
 
     console.log('========query:', query);
     
-    const values = props.keys_values.map((key_value) => key_value.value);
+    const values = keys_values.map((key_value) => key_value.value);
     
     const qResult = await connection.execute(query, values);
     console.log('result:', qResult);
