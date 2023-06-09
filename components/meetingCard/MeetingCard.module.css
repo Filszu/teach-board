@@ -73,7 +73,9 @@
 .meetingCard h3{
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
 }
+
 .meetingCard__startingIn{
 
     color: var(--color-darkBlue);

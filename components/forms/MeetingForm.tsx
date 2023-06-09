@@ -94,12 +94,12 @@ const MeetingForm = (props: Props) => {
 
 
 
-    props.submitData(meeting);
-    // const url = await props.submitData(meeting);
+    // props.submitData(meeting);
+    const url = await props.submitData(meeting);
 
 
 
-    // window.location.href = url;
+    window.location.href = url;
 
   };
 

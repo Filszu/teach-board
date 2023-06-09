@@ -1,4 +1,5 @@
 import { getMeeting } from "@/lib/getMeeting";
+import { putMeeting } from "@/lib/putMeetings";
 import { Meeting } from "@/types/types";
 
 export async function GET(
@@ -40,3 +41,40 @@ export async function GET(
 
     
   }
+
+export async function PUT(
+  request: Request,
+  {
+    params,
+  }: {
+    params: { meetingId: string };
+  },){
+    const req = await request.json();
+
+    console.log('***put lesson***')
+    console.log(req)
+
+    const mId:string = params.meetingId; 
+    // console.log('meetingId:', meetingId)
+    
+    try{
+
+      await putMeeting({ 
+        meetingId: mId, 
+        columsToUpadte: {...req.columsToUpdate}
+      }
+      );
+        return new Response(JSON.stringify(
+            {"msg":"succes"}),{
+            status:200,
+        })
+    }
+    catch(error){
+        console.log(error)
+        return new Response(JSON.stringify(
+            {msg:"Error fetching data from database" }),{
+            status:500,
+        })
+    }
+
+}

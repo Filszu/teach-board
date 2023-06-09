@@ -144,7 +144,7 @@ const MeetingCard = (props: Props) => {
             <h3>
               <div>
                 <EventIcon fontSize="inherit"/>{date??date} <AccessTimeIcon fontSize="inherit"/>{time.substring(0, 5)} 
-                <MeetingButtons/>
+                <MeetingButtons meetingId={meeting.id}/>
               </div>
               
               <div className={styles.meetingCard__startingIn}>
