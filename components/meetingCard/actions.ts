@@ -1,6 +1,7 @@
 'use server'
 import { Meeting } from "@/types/types";
 import axios from "axios";
+import { revalidatePath } from "next/cache";
 
 //update meeting
 
@@ -19,6 +20,10 @@ export async function updateMeeting(props: Props) {
 
     // const response = await axios.put(`http://localhost:3000/api/meetings/${meetingId}`, {columsToUpdate});
     const res = await axios.put(`http://localhost:3000/api/meetings/${meetingId}`, {columsToUpdate});
+
+    revalidatePath(`/dashboard`)
+    revalidatePath(`/dashboard/meetings`)
+    revalidatePath(`/dashboard/meetings/${meetingId}`)
     // const meeting = response.data[0];
     // console.log('meeting:', meeting)
     // return meeting;

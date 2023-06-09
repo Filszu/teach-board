@@ -3,7 +3,7 @@ import MeetingsBox from "./components/MeetingsBox"
 import { Meeting } from "@/types/types"
 type Props = {}
 
-export const revalidate = 60; 
+export const revalidate = 10; 
 
 const Page = async(props: Props) => {
 
