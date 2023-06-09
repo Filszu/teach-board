@@ -78,8 +78,35 @@
 
     color: var(--color-darkBlue);
     /* color: var(--color-completed) */
+    
 
 }
+
+.meetingCard__butons::before{
+    filter: grayscale(0%) !important;
+}
+.meetingCard__butons{
+    /* color: white; */
+   /* &:hover {
+        filter: none;
+        color: yellow;
+    }*/
+    filter: grayscale(0%) !important;
+}
+.meetingCard__butons:hover{
+    filter: none;
+    /* color: yellow; */
+}
+
+.meetingCard__butons_done{
+    color: var(--color-paid);
+
+}
+
+.meetingCard__butons_cancel{
+    color: var(--color-unpaid);
+}
+
 /* @-webkit-keyframes slide-top {
     0% {
       -webkit-transform: translateY(100px) scale(0.8);

@@ -18,6 +18,7 @@ import Slide from '@mui/material/Slide';
 import styles from './MeetingCard.module.css'
 import { useState } from "react";
 import Link from "next/link";
+import { MeetingButtons } from "./MeetingButtons";
 
 
 // export type Meeting = {
@@ -143,13 +144,16 @@ const MeetingCard = (props: Props) => {
             <h3>
               <div>
                 <EventIcon fontSize="inherit"/>{date??date} <AccessTimeIcon fontSize="inherit"/>{time.substring(0, 5)} 
+                <MeetingButtons/>
               </div>
+              
               <div className={styles.meetingCard__startingIn}>
               {startingIn&&
                  startingIn.msg!=="took place"? "starting "+startingIn.msg: "took place"}
                 {/* {startingIn.days==0?? `${startingIn.hours}h ${startingIn.minutes} m`}
                 {startingIn.days<0?? `Meeting has already started`} */}
               </div>
+              
                
             </h3>
             <section className={styles.meetingCard__desc}>

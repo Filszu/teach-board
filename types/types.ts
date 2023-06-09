@@ -1,5 +1,5 @@
 export interface Meeting {
-    id: number;
+    id: number | string;
     studentID: number;
     statusID: number | null;
     paymentStatusID: number | null;

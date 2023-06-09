@@ -4,7 +4,9 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import styles from './Navbar.module.css'
 import { IconButton } from "@mui/material";
 import Link from "next/link";
-type Props = {}
+type Props = {
+  meetingId: string | number;
+}
 
 const Navabar = (props: Props) => {
   return (
