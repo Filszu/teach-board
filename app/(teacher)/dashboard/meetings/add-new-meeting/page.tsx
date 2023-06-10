@@ -54,9 +54,10 @@ const Page = async(props: Props) => {
       
        
         const meetingUrl = await postMeeting(meeting);
-        // revalidatePath("/dashboard")
+        revalidatePath("/dashboard")
         // revalidatePath(`dashboard/meetings/${meetingUrl}?displayMode=new`);
         // redirect(`dashboard/meetings/${meetingUrl}?displayMode=new`);
+
 
         return meetingUrl+`?displayMode=new`;
 

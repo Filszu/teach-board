@@ -4,6 +4,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import { IconButton } from '@mui/material';
 import styles from './MeetingCard.module.css'
 import { updateMeeting } from './actions';
+import { useTransition } from 'react';
+
 
 interface Props {
     meetingId: string | number;
@@ -18,18 +20,22 @@ const MeetingButton = (props: Props) => {
 
 
 const MeetingButtons = (props: Props) => {
+    let [isPending, startTransition] = useTransition();
     return (
         <span className={styles.meetingCard__butons}>
             <span className={styles.meetingCard__butons_done}>
                 <IconButton aria-label="add new meeting" color="inherit" onClick={
-                    ()=>{updateMeeting(
-                        { 
-                            meetingId: props.meetingId, 
-                            keys_values: [
-                              { key: "statusID", value: "1" } 
-                            ] 
-                          }
-                    )}
+
+                    ()=>startTransition(
+                        ()=>{updateMeeting(
+                            { 
+                                meetingId: props.meetingId, 
+                                keys_values: [
+                                { key: "statusID", value: "1" } 
+                                ] 
+                            }
+                        )}
+                    )
 
                 }>
                     <DoneIcon  sx={{ fontSize: 20 }}/>
