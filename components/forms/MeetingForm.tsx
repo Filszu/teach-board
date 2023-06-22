@@ -103,11 +103,18 @@ const MeetingForm = (props: Props) => {
 
   };
 
+  async function executeForm() {
+    await props.submitData(meeting);
+  }
+
 
 
   return (
     <ThemeProvider theme={customTheme(outerTheme)}>
-    <form onSubmit={handleSubmit}
+    <form 
+    // onSubmit={handleSubmit}
+    action={executeForm}
+
     
     
       className={styles.meetingForm}>
