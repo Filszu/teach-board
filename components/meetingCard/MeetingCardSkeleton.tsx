@@ -3,11 +3,11 @@ import { Box, Skeleton, Stack } from '@mui/material';
 import styles from './MeetingCard.module.css';
 const MeetingCardSkeleton = () => {
   return (
-    <div className={`anim__slide-top ${styles.meetingCard} `} 
+    <div className={`${styles.meetingCard} `} 
    >
     <div style={{display:"flex", justifyContent:"space-between", alignItems:"center"}}>
         <Skeleton variant="text" width={"60%"} height={40} animation="wave"/>
-        <Skeleton variant="text" width={"30%"} height={40} animation="wave"/> 
+        <Skeleton variant="text" width={"20%"} height={40} animation="wave"/> 
     </div>
      <Skeleton variant="rounded" width={"100%"} height={80} animation="wave"/>
    

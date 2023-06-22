@@ -35,7 +35,7 @@ const LatestMeetings = (props: Props) => {
     const { latestMeetings } = props;
   return (
     <>
-    <MeetingCardSkeleton/>
+    {/* <MeetingCardSkeleton/> */}
      {latestMeetings&&latestMeetings.map((meeting:Meeting, index:number)=>{
               return <MeetingCard key={meeting.id} cardDetails={meeting} cardIndex={index+1} />
             })}
