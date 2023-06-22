@@ -19,6 +19,7 @@ import styles from './MeetingCard.module.css'
 import { useState } from "react";
 import Link from "next/link";
 import { MeetingButtons } from "./MeetingButtons";
+import MeetingCardSkeleton from "./MeetingCardSkeleton";
 
 
 // export type Meeting = {

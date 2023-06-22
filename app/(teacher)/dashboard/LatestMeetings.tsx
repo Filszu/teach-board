@@ -1,5 +1,5 @@
 'use client'
-import { MeetingCard } from '@/components';
+import { MeetingCard, MeetingCardSkeleton } from '@/components';
 import { Meeting } from '@/types/types';
 import React from 'react'
 
@@ -35,6 +35,7 @@ const LatestMeetings = (props: Props) => {
     const { latestMeetings } = props;
   return (
     <>
+    <MeetingCardSkeleton/>
      {latestMeetings&&latestMeetings.map((meeting:Meeting, index:number)=>{
               return <MeetingCard key={meeting.id} cardDetails={meeting} cardIndex={index+1} />
             })}

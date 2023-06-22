@@ -58,7 +58,8 @@ const Page = async(props: Props) => {
         // revalidatePath(`dashboard/meetings/${meetingUrl}?displayMode=new`);
         // redirect(`dashboard/meetings/${meetingUrl}?displayMode=new`);
 
-
+        revalidatePath("dashboard");
+        // redirect('/meetings/88');
         return meetingUrl+`?displayMode=new`;
 
 

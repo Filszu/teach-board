@@ -22,8 +22,11 @@ export async function updateMeeting(props: Props) {
     const res = await axios.put(`http://localhost:3000/api/meetings/${meetingId}`, {columsToUpdate});
 
     revalidatePath(`/dashboard`)
-    // revalidatePath(`/dashboard/meetings`)
-    // revalidatePath(`/dashboard/meetings/${meetingId}`)
+    revalidatePath(`/dashboard/meetings`)
+    revalidatePath(`/dashboard/meetings/[id]`)
+    revalidatePath(`/dashboard/meetings/${meetingId}`)
+    
+
 
 
 
