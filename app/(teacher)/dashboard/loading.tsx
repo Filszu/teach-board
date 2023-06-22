@@ -14,8 +14,7 @@ export default function Loading() {
             {/* <div style={{minWidth:"10px"}}></div><LoadingBox /> */}
             
             <MeetingCardSkeleton/>
-            <MeetingCardSkeleton/>
-            <MeetingCardSkeleton/>
+            
         </section>
 
     // <section style={{gridColumn:"1/13", display:"flex", justifyContent:"center"}}>
