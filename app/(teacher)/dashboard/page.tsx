@@ -6,26 +6,33 @@ import { Meeting } from '@/types/types';
 import { Suspense } from 'react';
 import LatestMeetings from './LatestMeetings';
 import Link from 'next/link';
+import axios from 'axios';
 
 
 
 type Props = {}
 
+export const revalidate = 10; 
+
 async function getLatestMeetings() {
-  const res = await fetch('http://localhost:3000/api/meetings?meetingStatus=3&showKeysNames=true&orderBy=dateTime&arrange=ASC&limit=15',{ 
-  next: { revalidate: 10},
-    // cache: 'no-store'
-  });
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
+  // const res = await fetch('http://localhost:3000/api/meetings?meetingStatus=3&showKeysNames=true&orderBy=dateTime&arrange=ASC&limit=15',{ 
+  //   cache: 'no-store',
+  //   next: { revalidate: 10},
+    
+  // });
+  const res = await axios.get(`http://localhost:3000/api/meetings?meetingStatus=3&showKeysNames=true&orderBy=dateTime&arrange=ASC&limit=15`,{
+    responseType: "json",
+  }) 
+
  
+  
   // Recommendation: handle errors
-  if (!res.ok) {
+  if (!res) {
     // This will activate the closest `error.js` Error Boundary
     throw new Error('Failed to fetch data');
   }
 
-  const meetings:Meeting[] = await res.json();
+  const meetings:Meeting[] = await res.data;
  
   return meetings;
 }
