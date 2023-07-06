@@ -2,6 +2,8 @@ import { getMeeting } from "@/lib/getMeeting";
 import { putMeeting } from "@/lib/putMeetings";
 import { Meeting } from "@/types/types";
 
+
+//add restrictred to sign in users with next auth
 export async function GET(
     request: Request,
     {

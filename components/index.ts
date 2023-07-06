@@ -9,6 +9,7 @@ import FaceRating from "./rating/FaceRating";
 import { BasicRating } from "./rating/Rating";
 import BasicDatePicker from "./formUI/DatePicker";
 import BasicDateTimePicker from "./formUI/BasicDateTimePicker";
+import AuthCheck from "./authComponents/AuthCheck";
 
 
-export { UserIcon, Navabar,InfoCard, MeetingCard, LoadingBox, MeetingForm, FaceRating, BasicRating, BasicDatePicker, BasicDateTimePicker, MeetingCardSkeleton };
+export { UserIcon, Navabar,InfoCard, MeetingCard, LoadingBox, MeetingForm, FaceRating, BasicRating, BasicDatePicker, BasicDateTimePicker, MeetingCardSkeleton, AuthCheck };

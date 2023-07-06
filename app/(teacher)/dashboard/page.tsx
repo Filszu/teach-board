@@ -7,12 +7,17 @@ import { Suspense } from 'react';
 import LatestMeetings from './LatestMeetings';
 import Link from 'next/link';
 import axios from 'axios';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { getServerSession } from 'next-auth';
+import { redirect } from 'next/navigation';
 
 
 
 type Props = {}
 
 export const revalidate = 10; 
+// export const dynamic = 'force-dynamic'
+// export const dynamic = 'auto' // default
 
 async function getLatestMeetings() {
   // const res = await fetch('http://localhost:3000/api/meetings?meetingStatus=3&showKeysNames=true&orderBy=dateTime&arrange=ASC&limit=15',{ 
@@ -39,6 +44,14 @@ async function getLatestMeetings() {
  
 
 const Page = async(props: Props) => {
+
+  const session = await getServerSession(authOptions)
+
+  if(!session){
+    // return (<h1>Not Authenticated</h1>);
+    redirect('api/auth/signin');
+  } 
+  
   const latestMeetings:Meeting[] = await getLatestMeetings();
   // console.log('latestMeetings',latestMeetings);
 

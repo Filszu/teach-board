@@ -1,11 +1,15 @@
 import axios from "axios"
 import MeetingsBox from "./components/MeetingsBox"
 import { Meeting } from "@/types/types"
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 type Props = {}
 
 export const revalidate = 10; 
 
 const Page = async(props: Props) => {
+
+ 
 
   async function getMeeting() {
     

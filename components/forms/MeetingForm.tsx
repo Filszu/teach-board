@@ -18,7 +18,7 @@ import styles from './MeetingForm.module.css'
 
 interface Props {
   students: Student[],
-  submitData: (meeting: Meeting) => Promise<string>,
+  submitData: (meeting: Meeting) => void,
   // postNewMeeting: (meeting: Meeting) => void,
 }
 // const theme = createTheme({

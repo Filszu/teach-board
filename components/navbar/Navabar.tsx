@@ -4,11 +4,16 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import styles from './Navbar.module.css'
 import { IconButton } from "@mui/material";
 import Link from "next/link";
-type Props = {
-  meetingId: string | number;
-}
+import AuthCheck from "../authComponents/AuthCheck";
+import { useSession } from "next-auth/react";
+// type Props = {
+//   meetingId: string | number;
+// }
 
-const Navabar = (props: Props) => {
+const Navabar = () => {
+
+  const { data: session, status } = useSession();
+  
   return (
     <nav className={styles["nav"]}>
         <div>
@@ -24,8 +29,13 @@ const Navabar = (props: Props) => {
           </Link>
         </div>
         <div>
-          <UserIcon userName='Filszu' />
+        <AuthCheck>
+         <UserIcon userName='Filszu' />
+        </AuthCheck>
+
+          
         </div>
+        
         
     </nav>
   )

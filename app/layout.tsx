@@ -7,6 +7,7 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata = {
   title: 'TeachBoard',
   description: 'TeachBoard Manage your classroom, students, and lessons.',
+  keywords: 'TeachBoard, classroom, students, lessons, teachers, education,Manage your classroom, students, and lessons.',
 }
 
 export default function RootLayout({

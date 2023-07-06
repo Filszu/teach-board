@@ -6,6 +6,7 @@ import Badge from '@mui/material/Badge';
 
 import styles from './UserIcon.module.css'
 import { Stack } from '@mui/material';
+import { useSession } from 'next-auth/react';
 type Props = {
     userName: string,
     userImg?: string,
@@ -14,6 +15,9 @@ type Props = {
 
 
 const UserIcon = (props: Props) => {
+
+  const { data: session, status } = useSession();
+  
   return (
     
     <div className={styles.icon}>
@@ -21,20 +25,31 @@ const UserIcon = (props: Props) => {
 
        
       
-        <Avatar sx={{ width: 56, height: 56 ,bgcolor: "var(--color-lightBlue)", }}
+        {/* <Avatar sx={{ width: 56, height: 56 ,bgcolor: "var(--color-lightBlue)", }}
         alt={`${props.userName[0]??'U'}`}
         >{props.userName[0]}
-        
+        </Avatar> */}
 
-        
-        
-        </Avatar>
         <Badge 
           badgeContent={50} color="success" style={{position:"absolute", top: "10px",right:"5px"}} max={9} 
         >  
         </Badge>
-       
-        {/* <Avatar alt="User Profile img" src="../public/imgs/avatars/1.png" /> */}
+   
+
+        {
+          session?.user?.image ? (
+            // <img src={session?.user?.image} alt="User Profile img" width={56} height={56} />
+            <Avatar sx={{ width: 56, height: 56 }} alt="User Profile img" src={session?.user?.image}  />
+          ):(
+             <Avatar sx={{ width: 56, height: 56 ,bgcolor: "var(--color-lightBlue)", }}
+              alt={`${props.userName[0]??'U'}`}
+              >{props.userName[0]}
+              </Avatar>
+          )
+          
+        }
+
+        
     </div>
    
   )
