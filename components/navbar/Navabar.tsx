@@ -30,7 +30,9 @@ const Navabar = () => {
         </div>
         <div>
         <AuthCheck>
-         <UserIcon userName='Filszu' />
+         <UserIcon 
+        //  userName='Filszu' 
+         />
         </AuthCheck>
 
           

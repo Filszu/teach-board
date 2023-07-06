@@ -7,11 +7,12 @@ import Badge from '@mui/material/Badge';
 import styles from './UserIcon.module.css'
 import { Stack } from '@mui/material';
 import { useSession } from 'next-auth/react';
-type Props = {
-    userName: string,
-    userImg?: string,
+// type Props = {
+//     userName: string,
+//     userImg?: string,
+// }
+interface Props {
 }
-
 
 
 const UserIcon = (props: Props) => {
@@ -42,8 +43,8 @@ const UserIcon = (props: Props) => {
             <Avatar sx={{ width: 56, height: 56 }} alt="User Profile img" src={session?.user?.image}  />
           ):(
              <Avatar sx={{ width: 56, height: 56 ,bgcolor: "var(--color-lightBlue)", }}
-              alt={`${props.userName[0]??'U'}`}
-              >{props.userName[0]}
+              alt={`${session?.user?.name??'User profile img'}`}
+              >{session?.user?.name?.toString()[0]??'U'}
               </Avatar>
           )
           
