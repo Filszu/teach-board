@@ -6,6 +6,9 @@ import axios from 'axios';
 import { postMeeting } from '@/components/forms/postMeeting';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import { useSession } from 'next-auth/react';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 
 
 interface Props {
@@ -45,7 +48,14 @@ const redirectToMeeting = (id:string) => {
 
 const Page = async(props: Props) => {
   // redirect('dashboard/meetings/86');
-  
+    // const {data: session} = useSession({required: true});
+
+    const session = await getServerSession(authOptions)
+
+    // if(!session){
+      // return (<h1>Not Authenticated</h1>);
+      // redirect('../../api/auth/signin');
+    // } 
 
     // const submitData = async(meeting:Meeting) => {
       async function submitData(meeting:Meeting) {

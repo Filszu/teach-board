@@ -49,7 +49,7 @@ const Page = async(props: Props) => {
 
   if(!session){
     // return (<h1>Not Authenticated</h1>);
-    redirect('api/auth/signin');
+    redirect('api/auth/signin?callbackUrl=/ dashboard');
   } 
   
   const latestMeetings:Meeting[] = await getLatestMeetings();

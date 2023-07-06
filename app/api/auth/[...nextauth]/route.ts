@@ -42,14 +42,19 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     // async signIn({ account, profile }) {
-    //   if (account.provider === "google") {
-    //     return profile.email_verified && profile.email.endsWith("@example.com")
+    //   if (account?.provider === "google") {
+    //     return profile?.email_verified && profile?.email!.endsWith("@example.com")
     //   }
     //   return true // Do different verification for other providers that don't have `email_verified`
     // },
   },
-  // secret: process.env.JWT_SECRET! as string,
-  secret: process.env.NEXTAUTH_SECRET,
+  theme: {
+    colorScheme: "dark", // "auto" | "dark" | "light"
+    // brandColor: "", // Hex color code
+    logo: "http://localhost:3000/public/imgs/avatars/1.png", // Absolute URL to image
+    // buttonText: "" // Hex color code
+  }
+  
 };
 
 const handler = NextAuth(authOptions);

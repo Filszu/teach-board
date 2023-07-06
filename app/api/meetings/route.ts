@@ -3,10 +3,17 @@ import { db_pool } from "@/utils/dbConnection"
 import { fakeDelay } from "@/utils/fakeDelay"
 import { Meeting } from "@/types/types"
 import { postNewMeeting } from "@/lib/postNewMeeting"
+import { getServerSession } from "next-auth"
+import { authOptions } from "../auth/[...nextauth]/route"
 
 
 export async function GET(req:NextRequest){
     console.log('***get lessons***')
+    
+    const session = await getServerSession(authOptions)
+    if(!session){
+        return NextResponse.json({ message: "You must be logged in." }, { status: 401 })
+    }
 
     
     const {searchParams} = new URL(req.nextUrl)
