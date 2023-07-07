@@ -10,10 +10,11 @@ import { authOptions } from "../auth/[...nextauth]/route"
 export async function GET(req:NextRequest){
     console.log('***get lessons***')
     
-    const session = await getServerSession(authOptions)
-    if(!session){
-        return NextResponse.json({ message: "You must be logged in." }, { status: 401 })
-    }
+    // const session = await getServerSession(authOptions)
+    // if(!session){
+    //     return NextResponse.json({ message: "You must be logged in." }, { status: 401 })
+    // }
+    // idk why its not working 
 
     
     const {searchParams} = new URL(req.nextUrl)

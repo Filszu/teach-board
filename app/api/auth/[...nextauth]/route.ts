@@ -3,14 +3,34 @@ import type { NextAuthOptions } from 'next-auth';
 import GithubProvider from 'next-auth/providers/github';
 import GoogleProvider from "next-auth/providers/google";
 
+// import { Adapter } from 'next-auth/adapters';
 
+//import type orm adpter from next
+import { TypeORMAdapter } from "@auth/typeorm-adapter"
+import { Adapter } from 'next-auth/adapters';
+import { ConnectionOptions } from 'typeorm';
+// import { SnakeNamingStrategy } from 'typeorm-naming-strategies'
+// export { ConnectionOptions } from "./connection/ConnectionOptions";
+
+
+const TypeORMconnection: ConnectionOptions = {
+  type: "mysql",
+  host: "localhost",
+  port: 3306,
+  username: "root",
+  password: "",
+  database: "lessons",
+  // namingStrategy: new SnakeNamingStrategy()
+}
 
 
 export const authOptions: NextAuthOptions = {
   // session: {
   //   strategy: 'jwt',
   // },
+  
   secret: process.env.NEXTAUTH_SECRET,
+  adapter: TypeORMAdapter(TypeORMconnection) as Adapter,
   providers: [
     // GithubProvider({
     //   clientId: process.env.GITHUB_ID!,
@@ -53,7 +73,12 @@ export const authOptions: NextAuthOptions = {
     // brandColor: "", // Hex color code
     logo: "http://localhost:3000/public/imgs/avatars/1.png", // Absolute URL to image
     // buttonText: "" // Hex color code
-  }
+  },
+  // adapter: Adapters.TypeORM.Adapter({
+  //   type: "sqlite",
+  //   database: ":memory:",
+  //   synchronize: true,
+  // })
   
 };
 
