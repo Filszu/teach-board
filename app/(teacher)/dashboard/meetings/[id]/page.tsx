@@ -1,8 +1,10 @@
 import axios from 'axios';
 import styles from './page.module.css'
-import { notFound } from "next/navigation"
+import { notFound, redirect } from "next/navigation"
 import { Meeting } from '@/types/types';
 import { MeetingCard } from '@/components';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 
 export const revalidate = 60; 
 
@@ -15,6 +17,13 @@ export default async function Page(
         //  searchParams: URLSearchParams
         searchParams?: { [key: string]: string | string[] | undefined };
     }) {
+
+        
+    const session = await getServerSession(authOptions)
+    if(!session){
+      redirect('../../api/auth/signin');
+    } 
+    
     const meetingId = params.id;
     // const searchParams = searchParams;
     //pramas

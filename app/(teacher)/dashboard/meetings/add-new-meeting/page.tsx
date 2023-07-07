@@ -51,11 +51,10 @@ const Page = async(props: Props) => {
     // const {data: session} = useSession({required: true});
 
     const session = await getServerSession(authOptions)
-
-    // if(!session){
+    if(!session){
       // return (<h1>Not Authenticated</h1>);
-      // redirect('../../api/auth/signin');
-    // } 
+      redirect('../../api/auth/signin');
+    } 
 
     // const submitData = async(meeting:Meeting) => {
       async function submitData(meeting:Meeting) {

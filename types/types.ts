@@ -36,3 +36,15 @@ export interface Student {
     notes?: string | null;
   }
   
+export interface Teacher {
+    id: number;
+    name: string;
+    surname: string;
+    nickname: string;
+    profileStatus: number;
+    phone_number: number | null;
+    notes: string | null;
+    image: string;
+    email: string;
+    description: string | null;
+}

@@ -3,9 +3,13 @@
 
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { useState } from 'react';
+// import { useState } from 'react';
+import Settings from '@mui/icons-material/Settings';
+import Logout from '@mui/icons-material/Logout';
+import Person2RoundedIcon from '@mui/icons-material/Person2Rounded';
+import { ListItemIcon } from '@mui/material';
 
-
+import { signOut } from 'next-auth/react';
 interface Props {
     handleClose: () => void,
     anchorEl: null | HTMLElement,
@@ -24,7 +28,7 @@ const ProfileMenu = ({handleClose, anchorEl}:Props) => {
 
   return (
     <>
-          <Menu
+        <Menu color='secondary'
         id="basic-menu"
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
@@ -33,9 +37,32 @@ const ProfileMenu = ({handleClose, anchorEl}:Props) => {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+         <MenuItem onClick={handleClose}>
+            <ListItemIcon>
+            <Person2RoundedIcon fontSize="small" />
+           
+            </ListItemIcon>
+          Profile
+        </MenuItem>
+        <MenuItem onClick={handleClose}>
+            <ListItemIcon>
+            <Settings fontSize="small" />
+           
+            </ListItemIcon>
+          Settings
+        </MenuItem>
+        <MenuItem onClick={()=>{
+            handleClose(); 
+            signOut(
+                // { callbackUrl: `${process.env.STARTER_PAGE}` })
+                { callbackUrl: `localhost:3000` })
+                
+            }}>
+          <ListItemIcon>
+            <Logout fontSize="small" />
+          </ListItemIcon>
+          Logout
+        </MenuItem>
       </Menu>
     </>
   )
