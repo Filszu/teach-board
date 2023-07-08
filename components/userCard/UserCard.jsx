@@ -1,6 +1,6 @@
 'use client';
 // import { makeStyles } from '@mui/styles';
-import { Card, CardContent, Typography, Avatar, Chip } from '@mui/material';
+import { Card, CardContent, Typography, Avatar, Chip, Box } from '@mui/material';
 import { Email, Description, EventNote } from '@mui/icons-material';
 
 // const useStyles = makeStyles((theme) => ({
@@ -47,8 +47,14 @@ const styles = {
   subtitle: {
     textAlign: 'center',
   },
-  chip: {
+  chipContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    flexWrap: 'wrap',
     margin: '8px',
+  },
+  chip: {
+    margin: '4px',
   },
   icon: {
     marginRight: '4px',
@@ -83,43 +89,51 @@ const UserCard = ({user}) => {
     //   </CardContent>
     // </Card>
     <Card style={styles.card}>
-    <CardContent>
-      <Avatar src={image} alt={`${name} ${surname}`} style={styles.avatar} />
-      <Typography variant="h5" component="div" style={styles.name}>
-        {`${name} ${surname}`}
-      </Typography>
-      <Typography variant="subtitle1" style={styles.subtitle}>
-        {nickname}
-      </Typography>
-      <Chip
-        label={`Profile Status: ${profileStatus}`}
-        color="primary"
-        style={styles.chip}
-        icon={<EventNote style={styles.icon} />}
-      />
-      <Chip
-        label={email}
-        color="secondary"
-        style={styles.chip}
-        icon={<Email style={styles.icon} />}
-      />
-      {description && (
-        <Chip
-          label={description}
-          style={styles.chip}
-          icon={<Description style={styles.icon} />}
-        />
-      )}
-      {joinedDate && (
-        <Chip
-          label={`Joined: ${joinedDate}`}
-          style={styles.chip}
-          color="default"
-          icon={<EventNote style={styles.icon} />}
-        />
-      )}
-    </CardContent>
-  </Card>
+      <CardContent>
+        <Avatar src={image} alt={`${name} ${surname}`} style={styles.avatar} />
+        <Typography variant="h5" component="div" style={styles.name}>
+          {`${name} ${surname}`}
+        </Typography>
+        <Typography variant="subtitle1" style={styles.subtitle}>
+          {nickname}
+        </Typography>
+        <Box style={styles.chipContainer}>
+          <Chip
+            label={`Profile Status: ${profileStatus}`}
+            color="primary"
+            style={styles.chip}
+            icon={<EventNote style={styles.icon} />}
+          />
+        </Box>
+        <Box style={styles.chipContainer}>
+          <Chip
+            label={email}
+            color="secondary"
+            style={styles.chip}
+            icon={<Email style={styles.icon} />}
+          />
+        </Box>
+        {description && (
+          <Box style={styles.chipContainer}>
+            <Chip
+              label={description}
+              style={styles.chip}
+              icon={<Description style={styles.icon} />}
+            />
+          </Box>
+        )}
+        {joinedDate && (
+          <Box style={styles.chipContainer}>
+            <Chip
+              label={`Joined: ${joinedDate}`}
+              style={styles.chip}
+              color="default"
+              icon={<EventNote style={styles.icon} />}
+            />
+          </Box>
+        )}
+      </CardContent>
+    </Card>
   );
 };
 

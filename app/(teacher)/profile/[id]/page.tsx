@@ -20,7 +20,12 @@ const UserProfile = async({params}:Props) => {
     //   })
 
     
-    const jUser:Teacher = await getUser(id.toString());
+    const jUser:Teacher = await getUser({
+        condition: {
+          key: "uuAccountID",
+          value: `${id}`
+        }
+      });
     // const user:Teacher = jUser.
     console.log('jUser',jUser);
     if(!jUser) return (notFound())

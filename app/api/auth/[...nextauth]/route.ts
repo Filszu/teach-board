@@ -12,6 +12,11 @@ import { ConnectionOptions } from 'typeorm';
 import { postNewTeacher } from '@/lib/postNewUser';
 // import { SnakeNamingStrategy } from 'typeorm-naming-strategies'
 // export { ConnectionOptions } from "./connection/ConnectionOptions";
+import { User } from 'next-auth'
+
+interface CustomUser extends User {
+  id: string
+}
 
 
 const TypeORMconnection: ConnectionOptions = {
@@ -61,14 +66,32 @@ export const authOptions: NextAuthOptions = {
   //   }
   // },
   ],
-  callbacks: {
-    // async signIn({ account, profile }) {
-    //   if (account?.provider === "google") {
-    //     return profile?.email_verified && profile?.email!.endsWith("@example.com")
+  // callbacks: {
+  //   async session({ session, token, user }) {
+  //     // Send properties to the client, like an access_token and user id from a provider.
+  //     // session.accessToken = token.accessToken
+  //     if(session.user){
+  //       session.user.id = token.id
+  //     }     
+  //     return session
+  //   }
+  // },
+  callbacks:{
+    // async session({ session, token, user }) {
+    //   // Send properties to the client, like an access_token and user id from a provider.
+    //   // session.accessToken = token.accessToken
+    //   // if(session.user){
+    //   //   session.user.id = token.id
+    //   // }     
+    //   console.log("session", session)
+    //   // console.log("token", token)
+    //   console.log("user", user)
+    //   if(session.user){
+    //     // session.user.role = user.role
+    //     session.user.id = user.id
     //   }
-    //   return true // Do different verification for other providers that don't have `email_verified`
-    // },
-   
+    //   return {...session, user}
+    // }
   },
   theme: {
     colorScheme: "dark", // "auto" | "dark" | "light"

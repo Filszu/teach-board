@@ -14,6 +14,7 @@ import { useState } from 'react';
 //     userImg?: string,
 // }
 interface Props {
+  // session: any,
 }
 
 

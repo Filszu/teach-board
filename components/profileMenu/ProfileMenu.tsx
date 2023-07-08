@@ -9,7 +9,8 @@ import Logout from '@mui/icons-material/Logout';
 import Person2RoundedIcon from '@mui/icons-material/Person2Rounded';
 import { ListItemIcon } from '@mui/material';
 
-import { signOut } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
+import Link from 'next/link';
 interface Props {
     handleClose: () => void,
     anchorEl: null | HTMLElement,
@@ -25,6 +26,8 @@ const ProfileMenu = ({handleClose, anchorEl}:Props) => {
     // const handleClose = () => {
     //   setAnchorEl(null);
     // };
+
+    const { data: session, status } = useSession();
 
   return (
     <>
@@ -44,6 +47,7 @@ const ProfileMenu = ({handleClose, anchorEl}:Props) => {
             </ListItemIcon>
           Profile
         </MenuItem>
+        <Link href={`profile/${session?.user?.email}`}>
         <MenuItem onClick={handleClose}>
             <ListItemIcon>
             <Settings fontSize="small" />
@@ -51,6 +55,7 @@ const ProfileMenu = ({handleClose, anchorEl}:Props) => {
             </ListItemIcon>
           Settings
         </MenuItem>
+        </Link>
         <MenuItem onClick={()=>{
             handleClose(); 
             signOut(

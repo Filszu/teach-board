@@ -2,15 +2,17 @@
 import { db_pool } from "@/utils/dbConnection";
 import { Teacher } from "@/types/types";
 interface Props {
-    userId: string;
+    condition:{key:string, value:string};
 }
-export async function getUser(userId: string) {
+export async function getUser(props: Props) {
     const connection = await db_pool.promise().getConnection();
     const sqlQuery = `
-    SELECT name, surname, nickname, profileStatus, phone_number, notes, image, email, description, joinedDate, uuAccountID FROM teachers WHERE uuAccountID = "${userId}"
+    SELECT name, surname, nickname, profileStatus, phone_number, notes, image, email, description, joinedDate, uuAccountID FROM teachers WHERE ${props.condition.key} = "${props.condition.value}"
+
     ;
 
     `;
+    // uuAccountID = "${userId}"
 
     // console.log(sqlQuery);
     const [rows, fields] = await connection.execute(sqlQuery)
