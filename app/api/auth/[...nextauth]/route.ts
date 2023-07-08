@@ -94,7 +94,7 @@ export const authOptions: NextAuthOptions = {
       //   }
       //   )
       // postNewTeacher({teacher: {name:"name", email:"email", image:"image"}})
-      await postNewTeacher({teacher: {name:msg.user.name, email:msg.user.email, image:msg.user.image}})
+      await postNewTeacher({teacher: {name:msg.user.name, email:msg.user.email, image:msg.user.image, uuAccountID:msg.user.id}})
 
       
 

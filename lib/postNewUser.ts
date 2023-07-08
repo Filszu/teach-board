@@ -9,6 +9,7 @@ interface Props {
         name?: string | null;
         email?: string | null;
         image?: string | null;
+        uuAccountID?: string | null;
     };
 }
 
@@ -19,9 +20,9 @@ export async function postNewTeacher(props: Props) {
     
     const query = `
         INSERT INTO teachers
-        (id, name, surname, nickname, profileStatus, phone_number, notes, image, email, description, joinedDate)
+        (id, name, surname, nickname, profileStatus, phone_number, notes, image, email, description, joinedDate, uuAccountID)
         VALUES
-        (NULL, ?,?,?,?,?,?,?,?,?,NULL);
+        (NULL, ?,?,?,?,?,?,?,?,?,NULL,?);
     `;
 
     const values = [
@@ -34,6 +35,7 @@ export async function postNewTeacher(props: Props) {
         props.teacher.image,
         props.teacher.email,
         "",
+        props.teacher.uuAccountID,
 
     ];
 

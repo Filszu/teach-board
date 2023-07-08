@@ -47,4 +47,6 @@ export interface Teacher {
     image: string;
     email: string;
     description: string | null;
+    joinedDate: string | null;
+    uuAccountID: string;
 }
